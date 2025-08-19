@@ -8,13 +8,13 @@
   <title>Web3 Intelligent Mine — Smart Mining for Part-Time Earners</title>
 
   <meta name="description" content="Non-custodial, AI-assisted strategies across staking, restaking, and liquidity mining. Built for part-time contributors who want transparent, risk-aware rewards." />
-  <meta name="keywords" content="web3, smart mining, staking, restaking, liquidity mining, DeFi, side hustle, passive income, validator, onchain, crypto.com" />
+  <meta name="keywords" content="web3, smart mining, staking, restaking, liquidity mining, DeFi, side hustle, passive income, validator, crypto.com, onchain wallet" />
   <meta property="og:title" content="Web3 Intelligent Mine — Smart Mining for Part-Time Earners" />
   <meta property="og:description" content="Run smarter. Earn better. Non-custodial, multi-chain, and risk-aware." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Web3 Intelligent Mine" />
-  <meta property="og:url" content="https://your-onchain-domain/" />
-  <meta property="og:image" content="https://your-onchain-domain/brand.png" />
+  <meta property="og:url" content="https://your-domain.com/" />
+  <meta property="og:image" content="https://your-domain.com/brand.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#22d3ee" />
 
@@ -63,7 +63,7 @@
 
     /* Style toggles (Crypto / Onchain) */
     .brand-switch{display:flex; gap:8px; align-items:center}
-    .brandbtn{font:700 12px/1 'Inter',sans-serif; letter-spacing:.04em; padding:6px 8px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:#b9c8e6; cursor:pointer}
+    .brandbtn{font:700 12px/1 'Inter',sans-serif; letter-spacing:.04em; padding:6px 8px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:#b9c8e6}
     .brandbtn.active{border-color:var(--accent); color:var(--text)}
 
     section{padding:54px 0}
@@ -214,8 +214,8 @@
         <a class="ghost" href="#contact">Contact</a>
         <div class="brand-switch" aria-label="Theme">
           <button class="brandbtn active" id="btn-def" onclick="setBrand('default')">Default</button>
-          <button class="brandbtn" id="btn-crypto" onclick="setBrand('crypto')">Crypto-style</button>
-          <button class="brandbtn" id="btn-onchain" onclick="setBrand('onchain')">Onchain-style</button>
+          <button class="brandbtn" id="btn-crypto" onclick="setBrand('crypto')">C·Style</button>
+          <button class="brandbtn" id="btn-onchain" onclick="setBrand('onchain')">O·Style</button>
         </div>
         <a class="cta" href="#" onclick="return openWhatsAppGift()">Send Message</a>
       </nav>
@@ -293,17 +293,18 @@
       </div>
     </section>
 
-    <!-- Ecosystem (brand-inspired, not official logos) -->
+    <!-- Ecosystem (Crypto.com + Onchain look-and-feel) -->
     <section id="ecosys" class="tight">
       <div class="container">
         <h2 style="margin:0 0 16px">Ecosystem compatibility</h2>
         <div class="ecosys">
-          <!-- Onchain-inspired -->
+          <!-- Onchain block -->
           <div class="card panel">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
               <div class="e-logo">
-                <img alt="Onchain-styled icon" width="28" height="28"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2320e3b2'/%3E%3Cstop stop-color='%238b5cf6' offset='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M32 6l22 12v28L32 58 10 46V18L32 6z' fill='none' stroke='%23a7b6d6' stroke-width='2'/%3E%3Cpath d='M32 6l22 12-22 12L10 18 32 6z' fill='url(%23g)' opacity='.85'/%3E%3C/svg%3E" />
+                <!-- generic chain/cube icon (inline SVG) -->
+                <img alt="Onchain styled icon" width="28" height="28"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2320e3b2'/%3E%3Cstop stop-color='%238b5cf6' offset='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M32 6l22 12v28L32 58 10 46V18L32 6z' fill='none' stroke='%23a7b6d6' stroke-width='2'/%3E%3Cpath d='M32 6l22 12-22 12L10 18 32 6z' fill='url(%23g)' opacity='.85'/%3E%3C/ svg%3E".replace(' ','') />
               </div>
               <div>
                 <h3 style="margin:0">Onchain wallet ready</h3>
@@ -318,12 +319,13 @@
             </ul>
           </div>
 
-          <!-- Crypto.com-inspired -->
+          <!-- Crypto.com block -->
           <div class="card panel">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
               <div class="e-logo">
+                <!-- generic hex shield icon (Crypto.com-inspired, no trademark) -->
                 <img alt="Hex shield icon" width="28" height="28"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 6l20 10v16c0 10.5-7.6 20.1-20 26C19.6 52.1 12 42.5 12 32V16L32 6z' fill='%230b3a7a'/%3E%3Cpath d='M32 6l20 10-20 10L12 16 32 6z' fill='%2300a2ff' opacity='.85'/%3E%3C/svg%3E" />
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 6l20 10v16c0 10.5-7.6 20.1-20 26C19.6 52.1 12 42.5 12 32V16L32 6z' fill='%230b3a7a'/%3E%3Cpath d='M32 6l20 10-20 10L12 16 32 6z' fill='%2300a2ff' opacity='.85'/%3E%3C/ svg%3E".replace(' ','') />
               </div>
               <div>
                 <h3 style="margin:0">Crypto.com friendly</h3>
@@ -338,7 +340,7 @@
             </ul>
           </div>
         </div>
-        <p class="muted" style="font-size:12px;margin-top:10px">Logos above are generic, brand-inspired shapes for educational use only. This site is unaffiliated with any third party; trademarks belong to their respective owners.</p>
+        <p class="muted" style="font-size:12px;margin-top:10px">All trademarks are the property of their respective owners. This page is unaffiliated; compatibility notes are for user convenience.</p>
       </div>
     </section>
 
