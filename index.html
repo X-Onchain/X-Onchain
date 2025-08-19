@@ -8,13 +8,13 @@
   <title>Web3 Intelligent Mine — Smart Mining for Part-Time Earners</title>
 
   <meta name="description" content="Non-custodial, AI-assisted strategies across staking, restaking, and liquidity mining. Built for part-time contributors who want transparent, risk-aware rewards." />
-  <meta name="keywords" content="web3, smart mining, staking, restaking, liquidity mining, DeFi, side hustle, passive income, validator" />
+  <meta name="keywords" content="web3, smart mining, staking, restaking, liquidity mining, DeFi, side hustle, passive income, validator, onchain, crypto.com" />
   <meta property="og:title" content="Web3 Intelligent Mine — Smart Mining for Part-Time Earners" />
   <meta property="og:description" content="Run smarter. Earn better. Non-custodial, multi-chain, and risk-aware." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Web3 Intelligent Mine" />
-  <meta property="og:url" content="https://your-domain.com/" />
-  <meta property="og:image" content="https://your-domain.com/brand.png" />
+  <meta property="og:url" content="https://your-onchain-domain/" />
+  <meta property="og:image" content="https://your-onchain-domain/brand.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#22d3ee" />
 
@@ -30,8 +30,11 @@
       --border: #17234a;
       --text: #eaf2ff;
       --muted: #9bb3d9;
-      --accent: #22d3ee;
-      --accent-2: #a78bfa;
+
+      /* Accent palette (switchable) */
+      --accent: #22d3ee;     /* default cyan */
+      --accent-2: #a78bfa;   /* default purple */
+
       --ok: #34d399;
       --radius: 18px;
       --shadow: 0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
@@ -49,31 +52,32 @@
     a{color:var(--accent); text-decoration:none}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
 
-    /* Header */
     header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(10px); background:rgba(7,11,18,.6); border-bottom:1px solid var(--border); z-index:50}
     .nav{display:flex;align-items:center;justify-content:space-between; gap:20px; height:64px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
     .logo{width:36px;height:36px;border-radius:10px;overflow:hidden;display:grid;place-items:center;box-shadow:var(--shadow);background:#0f1729}
     .logo img{width:100%;height:100%;object-fit:cover}
-    .links{display:flex;align-items:center;gap:20px}
+    .links{display:flex;align-items:center;gap:18px}
     .cta{padding:.7rem 1rem;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; box-shadow:var(--shadow)}
     .ghost{padding:.6rem .9rem;border:1px solid var(--border);border-radius:12px;background:transparent;color:var(--text)}
+
+    /* Style toggles (Crypto / Onchain) */
+    .brand-switch{display:flex; gap:8px; align-items:center}
+    .brandbtn{font:700 12px/1 'Inter',sans-serif; letter-spacing:.04em; padding:6px 8px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:#b9c8e6; cursor:pointer}
+    .brandbtn.active{border-color:var(--accent); color:var(--text)}
 
     section{padding:54px 0}
     .tight{padding:38px 0} .dense{padding:26px 0}
 
-    /* Cards */
     .card{position:relative;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 40%), var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
     .card::before{content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;background:linear-gradient(135deg, rgba(34,211,238,.5), rgba(167,139,250,.35));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;}
     .panel{padding:22px}
 
-    /* Typography */
     h1,h2,h3{font-family:'Orbitron',sans-serif; letter-spacing:.02em}
     h1{font-size: clamp(32px,5vw,56px); line-height:1.05; margin:.6rem 0 1rem}
     .sub{font-size:clamp(16px,2.2vw,20px); color:var(--muted)}
     .actions{display:flex; gap:12px; margin:24px 0 10px}
 
-    /* Hero visual */
     .hero{padding:84px 0 40px}
     .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr; gap:36px; align-items:center}
     .eyebrow{display:inline-flex;gap:8px; align-items:center; padding:6px 10px;border:1px solid var(--border);border-radius:999px; color:var(--muted); font-weight:700}
@@ -97,23 +101,28 @@
     .orb .orb-logo{width:58%; height:auto; border-radius:22px; opacity:.95; mix-blend-mode:screen; filter: brightness(1.18) contrast(1.1) saturate(1.25) hue-rotate(185deg); box-shadow:0 0 48px rgba(34,211,238,.25),0 0 96px rgba(167,139,250,.18)}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Grids and lists */
     .stats{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:26px}
     .stat .k{font-weight:900;font-size:28px}
     .stat .label{color:var(--muted);font-size:13px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
     .benefits{margin:.2rem 0 .4rem; padding-left:0; list-style:none; display:grid; gap:6px}
     .benefits li{position:relative; padding-left:22px}
     .benefits li::before{content:"✔"; position:absolute; left:0; top:0; color:var(--accent)}
+
     .plans{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; grid-auto-rows:1fr}
     .plan{display:flex; flex-direction:column; height:100%}
     .plan .meta{display:flex; gap:8px; flex-wrap:wrap; margin:.3rem 0 .4rem}
     .chip{font-size:12px; border:1px solid var(--border); border-radius:999px; padding:4px 8px; color:var(--muted); white-space:nowrap}
     .plan .yield{font: 800 22px/1 'Orbitron', sans-serif; margin:.3rem 0 .2rem}
     .plan .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
+
     .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
     .step .n{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; display:grid; place-items:center}
+
+    .ecosys{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+    .e-logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid var(--border)}
     .badge{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border); color:var(--muted)}
     .risk-low{background:rgba(52,211,153,.1); color:#77f0c2; border-color:rgba(52,211,153,.3)}
     .risk-med{background:rgba(245,158,11,.1); color:#ffd182; border-color:rgba(245,158,11,.3)}
@@ -126,6 +135,7 @@
       .hero .wrap{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr 1fr}
       .grid-4{grid-template-columns:1fr 1fr}
+      .ecosys{grid-template-columns:1fr}
       .steps{grid-template-columns:1fr 1fr}
       .orb{width:min(68vw,420px)}
     }
@@ -137,16 +147,10 @@
 
     @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* ===== Canvas as BACKGROUND (does not occupy layout) ===== */
-    #bgfx{
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      display: block;
-      pointer-events: none;
-    }
+    /* Canvas as background */
+    #bgfx{ position:fixed; inset:0; z-index:-1; display:block; pointer-events:none; }
 
-    /* ===== Intro / Splash ===== */
+    /* Intro / Splash */
     html.no-scroll, body.no-scroll { overflow: hidden; }
     #intro{
       position:fixed; inset:0; z-index:2000;
@@ -180,7 +184,6 @@
   </style>
 </head>
 <body>
-  <!-- BACKGROUND canvas -->
   <canvas id="bgfx" aria-hidden="true"></canvas>
 
   <!-- Splash Intro -->
@@ -194,24 +197,31 @@
     </div>
   </div>
 
-  <!-- NAV -->
   <header>
     <div class="container nav">
-      <div class="brand"><div class="logo"><img data-brand alt="Brand logo" /></div> <span>Web3 Intelligent Mine</span></div>
+      <div class="brand">
+        <div class="logo"><img data-brand alt="Brand logo" /></div>
+        <span>Web3 Intelligent Mine</span>
+      </div>
       <nav class="links">
         <a href="#welcome">Welcome</a>
         <a href="#liquidity">Plans</a>
         <a href="#features">Features</a>
+        <a href="#ecosys">Ecosystem</a>
         <a href="#how">How it works</a>
         <a href="#strategies">Strategies</a>
         <a href="#faq">FAQ</a>
         <a class="ghost" href="#contact">Contact</a>
+        <div class="brand-switch" aria-label="Theme">
+          <button class="brandbtn active" id="btn-def" onclick="setBrand('default')">Default</button>
+          <button class="brandbtn" id="btn-crypto" onclick="setBrand('crypto')">Crypto-style</button>
+          <button class="brandbtn" id="btn-onchain" onclick="setBrand('onchain')">Onchain-style</button>
+        </div>
         <a class="cta" href="#" onclick="return openWhatsAppGift()">Send Message</a>
       </nav>
     </div>
   </header>
 
-  <!-- MAIN -->
   <main>
     <section class="ticker" style="border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(34,211,238,.06), transparent)">
       <div class="container" style="overflow:hidden">
@@ -225,7 +235,7 @@
       </div>
     </section>
 
-    <!-- Hero with priority CTA -->
+    <!-- Hero -->
     <section id="welcome" class="hero">
       <div class="container card panel" style="backdrop-filter: blur(12px) saturate(140%)">
         <div class="wrap">
@@ -280,6 +290,55 @@
           <div class="card panel"><div class="icon">🧭</div><h3>Transparent</h3><p class="muted">On-chain records for all moves, public performance dashboards, and plain-English reporting designed for part-time operators.</p></div>
           <div class="card panel"><div class="icon">⏱️</div><h3>Save time</h3><p class="muted">One-click compounding, gas-optimized routes, snapshot tax exports, and alerts when risk or yield drifts from your settings.</p></div>
         </div>
+      </div>
+    </section>
+
+    <!-- Ecosystem (brand-inspired, not official logos) -->
+    <section id="ecosys" class="tight">
+      <div class="container">
+        <h2 style="margin:0 0 16px">Ecosystem compatibility</h2>
+        <div class="ecosys">
+          <!-- Onchain-inspired -->
+          <div class="card panel">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+              <div class="e-logo">
+                <img alt="Onchain-styled icon" width="28" height="28"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2320e3b2'/%3E%3Cstop stop-color='%238b5cf6' offset='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M32 6l22 12v28L32 58 10 46V18L32 6z' fill='none' stroke='%23a7b6d6' stroke-width='2'/%3E%3Cpath d='M32 6l22 12-22 12L10 18 32 6z' fill='url(%23g)' opacity='.85'/%3E%3C/svg%3E" />
+              </div>
+              <div>
+                <h3 style="margin:0">Onchain wallet ready</h3>
+                <div class="badge">Friendly onboarding</div>
+              </div>
+            </div>
+            <p class="muted">Designed to work smoothly with Onchain-style wallets and domains. Sign messages, approve strategies, and keep full self-custody throughout.</p>
+            <ul class="benefits" style="margin-top:8px">
+              <li>One-click connect, no deposit to us</li>
+              <li>Hardware wallets supported</li>
+              <li>Clear transaction previews before every action</li>
+            </ul>
+          </div>
+
+          <!-- Crypto.com-inspired -->
+          <div class="card panel">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+              <div class="e-logo">
+                <img alt="Hex shield icon" width="28" height="28"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 6l20 10v16c0 10.5-7.6 20.1-20 26C19.6 52.1 12 42.5 12 32V16L32 6z' fill='%230b3a7a'/%3E%3Cpath d='M32 6l20 10-20 10L12 16 32 6z' fill='%2300a2ff' opacity='.85'/%3E%3C/svg%3E" />
+              </div>
+              <div>
+                <h3 style="margin:0">Crypto.com friendly</h3>
+                <div class="badge">On/Off-ramp compatible</div>
+              </div>
+            </div>
+            <p class="muted">Use popular exchanges such as Crypto.com for fiat on/off ramps and funding. We route on-chain; you choose where to custody and convert.</p>
+            <ul class="benefits" style="margin-top:8px">
+              <li>Gas-optimized routes between chains</li>
+              <li>Clear export for accounting/tax tools</li>
+              <li>No implied affiliation; you stay in control</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted" style="font-size:12px;margin-top:10px">Logos above are generic, brand-inspired shapes for educational use only. This site is unaffiliated with any third party; trademarks belong to their respective owners.</p>
       </div>
     </section>
 
@@ -410,6 +469,25 @@
     const $ = sel => document.querySelector(sel);
     document.getElementById('yr').textContent = new Date().getFullYear();
 
+    /* ===== Theme switcher (Crypto / Onchain) ===== */
+    function setBrand(mode){
+      const r = document.documentElement.style;
+      document.querySelectorAll('.brandbtn').forEach(b=>b.classList.remove('active'));
+      if(mode==='crypto'){ // Crypto.com vibes: deep blue + electric cyan
+        r.setProperty('--accent','#00a2ff');
+        r.setProperty('--accent-2','#0b3a7a');
+        $('#btn-crypto').classList.add('active');
+      }else if(mode==='onchain'){ // Onchain vibes: teal + violet
+        r.setProperty('--accent','#20e3b2');
+        r.setProperty('--accent-2','#8b5cf6');
+        $('#btn-onchain').classList.add('active');
+      }else{ // default
+        r.setProperty('--accent','#22d3ee');
+        r.setProperty('--accent-2','#a78bfa');
+        $('#btn-def').classList.add('active');
+      }
+    }
+
     /* ===== WhatsApp helpers ===== */
     function openWhatsAppPlan(code){
       const el = document.querySelector('.plan[data-code="'+code+'"]'); if(!el) return false;
@@ -526,7 +604,6 @@ Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(
         document.documentElement.classList.remove('no-scroll');
         document.body.classList.remove('no-scroll');
 
-        // Jump straight to main content (Welcome)
         const target = document.getElementById('welcome');
         if (target) {
           const y = target.getBoundingClientRect().top + window.pageYOffset - 8;
