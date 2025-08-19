@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>SmartMine — Web3 Smart Mining for Part‑Time Earners</title>
+  <meta name="description" content="Non‑custodial, AI‑assisted strategies for staking, restaking, and liquidity mining. Built for part‑time contributors who want transparent, risk‑aware yields." />
+  <meta name="keywords" content="web3, smart mining, staking, restaking, liquidity mining, DeFi, side hustle, passive income, node, validator" />
+  <meta property="og:title" content="SmartMine — Web3 Smart Mining for Part‑Time Earners" />
+  <meta property="og:description" content="Run smarter. Earn better. Non‑custodial, multi‑chain, and risk‑aware." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SmartMine" />
+  <meta property="og:url" content="https://your-domain.com/" />
+  <meta property="og:image" content="brand.png" />
+  <meta property="og:image:secure_url" content="https://your-domain.com/brand.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SmartMine — Web3 Smart Mining for Part‑Time Earners" />
+  <meta name="twitter:description" content="Non‑custodial, AI‑assisted strategies for staking, restaking, and liquidity mining." />
+  <meta name="twitter:image" content="https://your-domain.com/brand.png" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/brand.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/brand.png" />
+  <link rel="shortcut icon" href="/brand.png" />
+  <style>
+    :root{
+      --bg: #070b12;
+      --bg-soft: #0b1220;
+      --card: #0f1729;
+      --muted: #93a4c1;
+      --border: #1c2440;
+      --text: #e6eefc;
+      --accent: #38bdf8; /* sky-400 */
+      --accent-2: #818cf8; /* indigo-400 */
+      --ok: #34d399; /* emerald */
+      --warn: #f59e0b; /* amber */
+      --danger: #f43f5e; /* rose */
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.15), transparent 60%), radial-gradient(800px 500px at 120% 10%, rgba(129,140,248,.12), transparent 60%), var(--bg); color:var(--text); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"}
+    a{color:var(--accent)}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(10px); background:rgba(7,11,18,.6); border-bottom:1px solid var(--border); z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between; gap:20px; height:64px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo{width:36px;height:36px;border-radius:10px;overflow:hidden;display:grid;place-items:center;box-shadow:var(--shadow);background:#0f1729}
+    .logo img{width:100%;height:100%;object-fit:cover}
+    .logo span{font-weight:900}
+    .nav a{color:var(--text);opacity:.9;text-decoration:none;font-weight:600}
+    .links{display:flex;align-items:center;gap:20px}
+    .cta{padding:.7rem 1rem;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:800; box-shadow:var(--shadow)}
+    .ghost{padding:.6rem .9rem;border:1px solid var(--border);border-radius:12px;background:transparent}
+    .mobile-toggle{display:none}
+
+    /* Hero */
+    .hero{padding:84px 0 40px}
+    .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr; gap:36px; align-items:center}
+    .eyebrow{display:inline-flex;gap:8px; align-items:center; padding:6px 10px;border:1px solid var(--border);border-radius:999px; color:var(--muted); font-weight:700; letter-spacing:.02em}
+    .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--ok); box-shadow:0 0 16px var(--ok)}
+    h1{font-size: clamp(32px, 5vw, 56px); line-height:1.05; margin:.6rem 0 1rem}
+    .sub{font-size: clamp(16px, 2.2vw, 20px); color:var(--muted)}
+    .actions{display:flex; gap:12px; margin:24px 0 10px}
+    .tagline{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px}
+    .tag{font-size:13px; color:#b9c8e6; border:1px dashed var(--border); padding:6px 10px; border-radius:999px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 40%), var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .panel{padding:22px}
+
+    /* Stats */
+    .stats{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:26px}
+    .stat .k{font-weight:900;font-size:28px}
+    .stat .label{color:var(--muted);font-size:13px}
+
+    /* Features */
+    section{padding:54px 0} .tight{padding:38px 0} .dense{padding:26px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .feat h3{margin:.4rem 0 .2rem}
+    .feat p{color:var(--muted)}
+    .icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg, rgba(56,189,248,.2), rgba(129,140,248,.2)); border:1px solid var(--border)}
+
+    /* Benefits list */
+    .benefits{margin:.2rem 0 .4rem; padding-left:0; list-style:none; display:grid; gap:6px}
+    .benefits li{position:relative; padding-left:22px}
+    .benefits li::before{content:"✔"; position:absolute; left:0; top:0; color:var(--accent)}
+
+    /* Plan cards */
+    .plans{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; grid-auto-rows:1fr}
+    .plan{display:flex; flex-direction:column; height:100%}
+    .plan h3{margin:.2rem 0 .4rem}
+    .plan .meta{display:flex; gap:8px; flex-wrap:wrap; margin:.3rem 0 .4rem}
+    .chip{font-size:12px; border:1px solid var(--border); border-radius:999px; padding:4px 8px; color:var(--muted); white-space:nowrap}
+    .plan .yield{font: 800 22px/1 'Orbitron', sans-serif; margin:.3rem 0 .2rem}
+    .plan .term{color:var(--muted)}
+    .plan .cap{color:#b9c8e6}
+    .plan .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
+
+    /* Steps */
+    .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+    .step .n{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; display:grid; place-items:center}
+
+    /* Strategy cards */
+    .badge{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border); color:var(--muted)}
+    .risk-low{background:rgba(52,211,153,.1); color:#77f0c2; border-color:rgba(52,211,153,.3)}
+    .risk-med{background:rgba(245,158,11,.1); color:#ffd182; border-color:rgba(245,158,11,.3)}
+    .risk-high{background:rgba(244,63,94,.12); color:#ff97aa; border-color:rgba(244,63,94,.35)}
+
+    /* Calculator */
+    .calc{display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start}
+    .control{display:grid; gap:8px}
+    input[type="range"]{width:100%}
+    input[type="number"], select{background:#0a1326; color:var(--text); border:1px solid var(--border); border-radius:12px; padding:.7rem .9rem}
+    .result{font-weight:800;font-size:22px}
+    .muted{color:var(--muted)}
+
+    /* FAQ */
+    details{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer; font-weight:700}
+    summary::-webkit-details-marker{display:none}
+
+    footer{padding:40px 0; border-top:1px solid var(--border); color:#a7b6d6}
+    .foot{display:flex; gap:16px; justify-content:space-between; flex-wrap:wrap}
+
+    /* Sci‑fi theme overrides */
+    :root{
+      --bg: #030712;
+      --bg-soft: #070e1d;
+      --card: #0b1329;
+      --border: #17234a;
+      --text: #eaf2ff;
+      --muted: #9bb3d9;
+      --accent: #22d3ee; /* cyan */
+      --accent-2: #a78bfa; /* violet */
+      --radius: 18px;
+    }
+    body{font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    h1,h2,h3{font-family:'Orbitron', system-ui, sans-serif; letter-spacing:.02em}
+    #bgfx{position:fixed; inset:0; z-index:-1; pointer-events:none}
+    header{box-shadow:0 1px 0 var(--border)}
+    .brand{letter-spacing:.03em}
+    .logo{width:36px;height:36px;border-radius:10px;overflow:hidden;display:grid;place-items:center;box-shadow:var(--shadow);background:#0f1729}
+    .logo img{width:100%;height:100%;object-fit:cover}
+    .links a{position:relative}
+    .links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:scaleX(0);transform-origin:left;transition:transform .2s}
+    .links a:hover::after{transform:scaleX(1)}
+    .card{position:relative; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 40%), var(--card);}
+    .card::before{content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;background:linear-gradient(135deg, rgba(34,211,238,.6), rgba(167,139,250,.4));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;}
+    .glass{backdrop-filter: blur(12px) saturate(140%)}
+    .cta{box-shadow:0 0 0 0 rgba(34,211,238,.6); transition: box-shadow .2s, transform .2s}
+    .cta:hover{transform: translateY(-1px); box-shadow:0 0 24px rgba(34,211,238,.25), 0 0 48px rgba(167,139,250,.2)}
+    .hero-visual{position:relative;display:grid;place-items:center}
+    .orb{width:clamp(260px,28vw,460px);aspect-ratio:1;border-radius:50%;position:relative;display:grid;place-items:center;background:
+      radial-gradient(closest-side, rgba(34,211,238,.35), rgba(34,211,238,0) 60%),
+      conic-gradient(from 0deg, rgba(167,139,250,.25), rgba(34,211,238,.25), rgba(129,140,248,.25), rgba(167,139,250,.25));
+      filter: drop-shadow(0 0 24px rgba(34,211,238,.25)) drop-shadow(0 0 56px rgba(167,139,250,.2));
+      animation: spin 28s linear infinite;
+    }
+    .orb .orb-logo{width:58%; height:auto; border-radius:22px; opacity:.92; mix-blend-mode:screen; filter: brightness(1.18) contrast(1.1) saturate(1.25) hue-rotate(185deg); box-shadow:0 0 48px rgba(34,211,238,.25),0 0 96px rgba(167,139,250,.18)}
+    .floating{animation: float 8s ease-in-out infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes float{50%{transform:translateY(-6px)}}
+
+    /* Mobile sticky WhatsApp CTA */
+    .sticky-cta{display:none; position:fixed; left:0; right:0; bottom:16px; z-index:60; text-align:center}
+    .sticky-cta a{display:inline-flex; align-items:center; gap:8px; padding:.9rem 1.2rem; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; border-radius:999px; box-shadow:0 10px 30px rgba(34,211,238,.25)}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero .wrap{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .grid-4{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .calc{grid-template-columns:1fr}
+      .orb{width:min(68vw,420px)}
+    }
+      .grid-3{grid-template-columns:1fr 1fr}
+      .grid-4{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .calc{grid-template-columns:1fr}
+    }
+    @media (max-width: 680px){
+      .links{display:none}
+      .mobile-toggle{display:inline-flex; align-items:center; gap:10px}
+      .grid-3,.grid-4,.steps{grid-template-columns:1fr}
+      .grid-floor{opacity:.6}
+      .sticky-cta{display:block}
+    }
+      .mobile-toggle{display:inline-flex; align-items:center; gap:10px}
+      .grid-3,.grid-4,.steps{grid-template-columns:1fr}
+    }
+  /* Extra futuristic UI */
+    .ticker{border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(34,211,238,.06), transparent)}
+    .ticker .container{overflow:hidden}
+    .ticker-track{display:flex; gap:28px; white-space:nowrap; animation: ticker 32s linear infinite}
+    .ticker-item{opacity:.9}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    .grid-floor{position:absolute; inset:auto -20% -120px -20%; height:400px; background:
+      linear-gradient(to bottom, rgba(34,211,238,.0), rgba(34,211,238,.08)),
+      repeating-linear-gradient(90deg, rgba(34,211,238,.12) 0 1px, transparent 1px 60px),
+      repeating-linear-gradient(0deg, rgba(34,211,238,.12) 0 1px, transparent 1px 60px);
+      transform: perspective(900px) rotateX(65deg) translateZ(0);
+      filter: blur(.2px) drop-shadow(0 10px 40px rgba(34,211,238,.15));
+    }
+
+    .holo-wrap{position:relative; overflow:hidden}
+    .holo-wrap::after{content:""; position:absolute; inset:-200% -100% auto -100%; height:40%; background:linear-gradient(90deg, rgba(34,211,238,.0), rgba(34,211,238,.18), rgba(167,139,250,.18), rgba(34,211,238,.0)); transform:rotate(8deg); filter:blur(20px); opacity:.35}
+    .holo-overlay{position:absolute; inset:0; display:flex; align-items:flex-start; justify-content:space-between; padding:14px}
+    .holo-overlay .bn{display:grid; place-items:center; gap:2px}
+    .holo-overlay .bn span{font: 800 28px/1 'Orbitron', sans-serif}
+    .holo-overlay .bn small{color:var(--muted); font-size:12px}
+    .holo-overlay .legend{position:absolute; left:14px; bottom:10px; color:var(--muted); font-size:12px}
+    .tip-split{font-size:12px; margin-top:6px}
+
+    canvas#earnChart{width:100%; display:block}
+    .viz-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chips .chip{cursor:pointer}
+    .earn-summary{display:flex; justify-content:space-between; gap:12px; align-items:center; border-top:1px solid var(--border); padding-top:10px; margin-top:10px}
+    .earn-summary .lbl{color:var(--muted)}
+    
+</style>
+</head>
+<body>
+  <canvas id="bgfx" aria-hidden="true"></canvas>
+  <header>
+    <div class="container nav">
+      <div class="brand"><div class="logo"><img data-brand alt="SmartMine logo" /></div> <span>SmartMine</span></div>
+      <nav class="links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#strategies">Strategies</a>
+        <a href="#liquidity">Plans</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#faq">FAQ</a>
+        <a class="ghost" href="#contact">Contact</a>
+        <a class="cta" href="#mentorship">Mentor 1:1</a>
+      </nav>
+      <button class="mobile-toggle ghost" aria-label="Open menu" onclick="document.querySelector('.links')?.classList.toggle('open')">Menu ▾</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Live signals ticker -->
+    <section class="ticker">
+      <div class="container">
+        <div class="ticker-track" id="ticker-track">
+          <span class="ticker-item">⚡ On‑chain uptime 99.99%</span>
+          <span class="ticker-item">🧠 AI allocation updates every 4h</span>
+          <span class="ticker-item">🔐 Self‑custody · Hardware wallets supported</span>
+          <span class="ticker-item">🛰️ Multi‑chain routing optimized for gas</span>
+          <span class="ticker-item">📈 Backtests available in dashboard</span>
+        </div>
+      </div>
+    </section>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> Web3 Smart Mining, made simple</span>
+          <h1>Earn on autopilot — <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">for part‑time contributors</span></h1>
+          <p class="sub">Non‑custodial, AI‑assisted allocation across <strong>staking</strong>, <strong>restaking</strong>, and <strong>liquidity mining</strong>. Multi‑chain support with risk controls and full transparency.</p>
+          <div class="actions">
+            <a class="cta" href="#mentorship">Talk to a Mentor</a>
+            <a class="ghost" href="#features">Explore Features</a>
+          </div>
+          <div class="tagline">
+            <span class="tag">Non‑custodial</span>
+            <span class="tag">Multi‑chain</span>
+            <span class="tag">Risk‑aware</span>
+            <span class="tag">Open dashboards</span>
+          </div>
+          <div class="stats">
+            <div class="card panel stat">
+              <div class="k" id="stat-sim-users" data-count="3200">0</div>
+              <div class="label">waitlist signups (beta)</div>
+            </div>
+            <div class="card panel stat">
+              <div class="k">3</div>
+              <div class="label">strategy tiers: Conservative · Balanced · Growth</div>
+            </div>
+            <div class="card panel stat">
+              <div class="k">100%</div>
+              <div class="label">self‑custody: your keys, your assets</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="grid-floor"></div>
+          <div class="orb">
+            <img class="orb-logo" data-brand alt="SmartMine logo" />
+          </div>
+          <div class="card panel glass floating">
+            <h3 style="margin:0 0 10px">Quick Start</h3>
+            <ol style="margin:0; padding-left:18px; color:var(--muted)">
+              <li>Connect wallet (MetaMask, OKX, Rainbow, Ledger).</li>
+              <li>Select a strategy tier that fits your risk profile.</li>
+              <li>Allocate a budget and set optional stop‑loss.</li>
+              <li>Track rewards in real‑time. Withdraw anytime.</li>
+            </ol>
+            <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
+              <a class="cta" href="#" onclick="return openWhatsAppMentor()">WhatsApp Mentor</a>
+              <a class="ghost" href="#features">Learn more</a>
+            </div>
+            <p class="muted" style="margin-top:12px;font-size:12px">Demo only — no live funds required.</p>
+          </div>
+        </div>
+          <div class="card panel glass floating">
+            <h3 style="margin:0 0 10px">Quick Start</h3>
+            <ol style="margin:0; padding-left:18px; color:var(--muted)">
+              <li>Connect wallet (MetaMask, OKX, Rainbow, Ledger).</li>
+              <li>Select a strategy tier that fits your risk profile.</li>
+              <li>Allocate a budget and set optional stop‑loss.</li>
+              <li>Track rewards in real‑time. Withdraw anytime.</li>
+            </ol>
+            <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap">
+              <a class="cta" href="#" onclick="return openWhatsAppMentor()">WhatsApp Mentor</a>
+              <a class="ghost" href="#features">Learn more</a>
+            </div>
+            <p class="muted" style="margin-top:12px;font-size:12px">Demo only — no live funds required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="container">
+        <h2 style="margin:0 0 18px">Why SmartMine</h2>
+        <div class="grid-4">
+          <div class="card panel feat">
+            <div class="icon">⚙️</div>
+            <h3>AI‑assisted allocation</h3>
+            <p>Adaptive models rebalance across staking, restaking, and liquidity pools to target risk‑adjusted yield. You keep keys at all times.</p>
+          </div>
+          <div class="card panel feat">
+            <div class="icon">🔒</div>
+            <h3>Security first</h3>
+            <p>Non‑custodial contracts, hardware‑wallet support, and optional multi‑sig for team accounts. Continuous on‑chain monitoring.</p>
+          </div>
+          <div class="card panel feat">
+            <div class="icon">🧭</div>
+            <h3>Transparency</h3>
+            <p>On‑chain records for all moves, public performance dashboards, and plain‑English reporting designed for part‑time operators.</p>
+          </div>
+          <div class="card panel feat">
+            <div class="icon">🧰</div>
+            <h3>Tools that save time</h3>
+            <p>One‑click compounding, gas‑optimized routes, snapshot tax exports, and alerts when risk or yield drifts from your settings.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how">
+      <div class="container">
+        <h2 style="margin:0 0 18px">How it works</h2>
+        <div class="steps">
+          <div class="card panel step"><div class="n">1</div><h3>Connect</h3><p class="muted">Hook up your wallet. No deposits to us; assets stay in your control.</p></div>
+          <div class="card panel step"><div class="n">2</div><h3>Choose</h3><p class="muted">Pick a conservative, balanced, or growth strategy. Swap anytime.</p></div>
+          <div class="card panel step"><div class="n">3</div><h3>Allocate</h3><p class="muted">Set budget, caps, and optional stop‑loss. Preview projected ranges.</p></div>
+          <div class="card panel step"><div class="n">4</div><h3>Earn</h3><p class="muted">Rewards accrue to your wallet. Withdraw or compound on your schedule.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategies -->
+    <section id="strategies" class="tight">
+      <div class="container">
+        <h2 style="margin:0 0 18px">Strategy tiers</h2>
+        <div class="grid-3">
+          <div class="card panel">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <h3 style="margin:0">Conservative</h3>
+              <span class="badge risk-low">Lower risk</span>
+            </div>
+            <p class="muted">Primarily PoS staking and blue‑chip LSTs. Goal: capital preservation with steady rewards.</p>
+            <ul class="muted" style="padding-left:18px;margin:0 0 8px">
+              <li>Assets: LSTs (e.g., stETH), major PoS tokens</li>
+              <li>Target range (illustrative): 4–8% APY</li>
+              <li>Auto‑compounding, slashing insurance optional</li>
+            </ul>
+            <a class="ghost" href="#mentorship">Select Conservative →</a>
+          </div>
+          <div class="card panel">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <h3 style="margin:0">Balanced</h3>
+              <span class="badge risk-med">Medium risk</span>
+            </div>
+            <p class="muted">Blend of staking, restaking, and stable‑pair LPs with capped exposure to new protocols.</p>
+            <ul class="muted" style="padding-left:18px;margin:0 0 8px">
+              <li>Assets: LST/LRT, stable LP vaults</li>
+              <li>Target range (illustrative): 8–15% APY</li>
+              <li>Drawdown guardrails and weekly rebalance</li>
+            </ul>
+            <a class="ghost" href="#mentorship">Select Balanced →</a>
+          </div>
+          <div class="card panel">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <h3 style="margin:0">Growth</h3>
+              <span class="badge risk-high">Higher risk</span>
+            </div>
+            <p class="muted">Opportunistic restaking, points campaigns, and programmatic LP strategies. Strict position sizing.</p>
+            <ul class="muted" style="padding-left:18px;margin:0 0 8px">
+              <li>Assets: LRTs, rotating incentives</li>
+              <li>Target range (illustrative): 15–25%+ APY</li>
+              <li>Daily risk checks and alerting</li>
+            </ul>
+            <a class="ghost" href="#mentorship">Select Growth →</a>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:10px;font-size:12px">Ranges are for illustration only, not promises or guarantees. Digital assets are volatile. Do your own research.</p>
+      </div>
+    </section>
+
+    <!-- Liquidity mining plans -->
+    <section id="liquidity" class="dense">
+      <div class="container">
+        <h2 style="margin:0 0 14px">Liquidity mining plans</h2>
+        <div class="plans">
+          <div class="card panel plan" data-code="V1" data-days="3" data-mincap="500" data-maxcap="5000" data-rmin="0.015" data-rmax="0.025">
+            <h3>V1 · Starter</h3>
+            <div class="meta"><span class="chip term">Term: 3 days</span><span class="chip cap">Limit: $500 – $5,000</span></div>
+            <div class="yield">Daily: 1.5% – 2.5%</div>
+            <p class="muted" id="v1-total">Est. total over term: —</p>
+            <div class="cta-row">
+              <a class="cta" href="#" onclick="return openWhatsAppPlan('V1')">Join V1 via WhatsApp</a>
+              <a class="ghost" href="#mentorship">Ask mentor</a>
+            </div>
+          </div>
+          <div class="card panel plan" data-code="V2" data-days="25" data-mincap="5000" data-maxcap="500000" data-rmin="0.0175" data-rmax="0.0275">
+            <h3>V2 · Pro</h3>
+            <div class="meta"><span class="chip term">Term: 25 days</span><span class="chip cap">Limit: $5,000 – $500,000</span></div>
+            <div class="yield">Daily: 1.75% – 2.75%</div>
+            <p class="muted" id="v2-total">Est. total over term: —</p>
+            <div class="cta-row">
+              <a class="cta" href="#" onclick="return openWhatsAppPlan('V2')">Join V2 via WhatsApp</a>
+              <a class="ghost" href="#mentorship">Ask mentor</a>
+            </div>
+          </div>
+          <div class="card panel plan" data-code="V3" data-days="60" data-mincap="10000" data-maxcap="3000000" data-rmin="0.0185" data-rmax="0.0285">
+            <h3>V3 · Growth</h3>
+            <div class="meta"><span class="chip term">Term: 60 days</span><span class="chip cap">Limit: $10,000 – $3,000,000</span></div>
+            <div class="yield">Daily: 1.85% – 2.85%</div>
+            <p class="muted" id="v3-total">Est. total over term: —</p>
+            <div class="cta-row">
+              <a class="cta" href="#" onclick="return openWhatsAppPlan('V3')">Join V3 via WhatsApp</a>
+              <a class="ghost" href="#mentorship">Ask mentor</a>
+            </div>
+          </div>
+          <div class="card panel plan" data-code="V4" data-days="130" data-mincap="30000" data-maxcap="5000000" data-rmin="0.0195" data-rmax="0.0295">
+            <h3>V4 · Titan</h3>
+            <div class="meta"><span class="chip term">Term: 130 days</span><span class="chip cap">Limit: $30,000 – $5,000,000</span></div>
+            <div class="yield">Daily: 1.95% – 2.95%</div>
+            <p class="muted" id="v4-total">Est. total over term: —</p>
+            <div class="cta-row">
+              <a class="cta" href="#" onclick="return openWhatsAppPlan('V4')">Join V4 via WhatsApp</a>
+              <a class="ghost" href="#mentorship">Ask mentor</a>
+            </div>
+          </div>
+        </div>
+        <p class="muted" style="font-size:12px; margin-top:10px">Daily ranges are indicative and for illustration only. Participation is non‑custodial and subject to availability and risk controls.</p>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="usecases">
+      <div class="container">
+        <h2 style="margin:0 0 18px">Use cases & examples</h2>
+        <div class="grid-3">
+          <div class="card panel"><h3 style="margin:0 0 6px">Busy professional</h3><p class="muted">Allocate 2–3 hours per week; focus on conservative to balanced strategies with automated compounding and alerts.</p></div>
+          <div class="card panel"><h3 style="margin:0 0 6px">Student / newcomer</h3><p class="muted">Sandbox account, practice on testnets, and move to small‑size growth strategies once comfortable.</p></div>
+          <div class="card panel"><h3 style="margin:0 0 6px">Small team</h3><p class="muted">Multi‑sig wallet, role‑based approvals, and weekly review to coordinate restaking or LP incentives.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator -->
+    <section id="calculator">
+      <div class="container">
+        <h2 style="margin:0 0 18px">Reward range calculator (illustrative)</h2>
+        <div class="calc">
+          <div class="card panel">
+            <div class="control">
+              <label for="capital">Capital (USD)</label>
+              <input id="capital" type="number" min="0" step="100" value="2000" oninput="updateCalc()" />
+            </div>
+            <div class="control">
+              <label for="tier">Strategy tier</label>
+              <select id="tier" onchange="updateCalc()">
+                <option value="conservative">Conservative</option>
+                <option value="balanced" selected>Balanced</option>
+                <option value="growth">Growth</option>
+              </select>
+            </div>
+            <div class="control">
+              <label for="horizon">Time horizon (months)</label>
+              <input id="horizon" type="range" min="1" max="24" value="12" oninput="document.getElementById('hval').textContent=this.value+' mo'; updateCalc()" />
+              <div class="muted" id="hval">12 mo</div>
+            </div>
+          </div>
+          <div class="card panel">
+            <h3 style="margin:0 0 6px">Projected rewards</h3>
+            <p class="muted" style="margin:0 0 10px">Based on the selected tier's illustrative APY range, compounded monthly.</p>
+            <div class="result" id="res-range">$— to $—</div>
+            <div class="muted" id="res-apy" style="margin-top:8px">APY range: —</div>
+            <hr style="border:0;border-top:1px solid var(--border); margin:18px 0">
+            <p class="muted" style="font-size:12px">This tool is educational. It does not predict future returns and is not financial advice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Futuristic earnings visualizer -->
+    <section id="earnings">
+      <div class="container">
+        <h2 style="margin:0 0 12px">未来收益可视化工具</h2>
+        <div class="holo-wrap card panel glass">
+          <div class="viz-head">
+            <div class="chips">
+              <button class="chip" onclick="setCapital(500)">$500</button>
+              <button class="chip" onclick="setCapital(5000)">$5,000</button>
+              <button class="chip" onclick="setCapital(10000)">$10,000</button>
+              <button class="chip" onclick="setCapital(30000)">$30,000</button>
+            </div>
+            <div class="muted" id="bn-legend">— months · — tier</div>
+          </div>
+          <p class="muted" style="margin:6px 0 0; font-size:12px">提示：选择上面金额，或在下方“计算器”里调整 <strong>资金 / 策略档位 / 时间（月份）</strong>，图表会显示 <strong>最小～最大</strong> 预计范围。</p>
+            <div class="muted" id="bn-legend">— months · — tier</div>
+          </div>
+          <canvas id="earnChart" height="240"></canvas>
+          <div class="earn-summary" id="earn-summary">
+            <div><span class="lbl">按当前设置 预计范围：</span><strong id="bn-min">+—</strong> 至 <strong id="bn-max">+—</strong></div>
+            <div class="muted" id="bn-avg">等效日均：—</div>
+          </div>
+        </div>
+        <p class="muted" style="font-size:12px; margin-top:8px">范围用于演示，不构成收益承诺。风险自担。</p>
+      </div>
+    </section>
+
+    <!-- Security & Transparency -->
+    <section>
+      <div class="container">
+        <div class="grid-3">
+          <div class="card panel">
+            <h3 style="margin:0 0 6px">Self‑custody by design</h3>
+            <p class="muted">Keys remain with you (hardware wallets supported). Role‑based permissions for teams and automated withdrawal limits.</p>
+          </div>
+          <div class="card panel">
+            <h3 style="margin:0 0 6px">Audits & monitoring</h3>
+            <p class="muted">Contracts undergo external review before mainnet. Live risk monitors flag slippage, depeg, and oracle anomalies.</p>
+          </div>
+          <div class="card panel">
+            <h3 style="margin:0 0 6px">Clear fees</h3>
+            <p class="muted">No management fee during beta; success‑based performance fee may apply. Full fee breakdown before you confirm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentorship -->
+    <section id="mentorship">
+      <div class="container">
+        <div class="grid-3">
+          <div class="card panel" style="grid-column: span 2">
+            <h2 style="margin:0 0 8px">联系导师 · 一对一指导</h2>
+            <p class="muted">适合想用 <strong>Web3 智能挖矿</strong> 做兼职副业的人群。我们提供从策略选择、钱包与安全、部署到风险控制的全流程一对一辅导。</p>
+            <div class="grid-3" style="gap:12px; margin-top:8px">
+              <div class="card panel"><strong>你将获得</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>个人化策略搭配（质押 / 再质押 / LP）</li><li>仓位与风险上限设置（止损、限额、分散）</li><li>钱包与硬件钱包安全检查</li><li>Gas 费用与路由优化、复投节奏</li><li>节点/验证者可选方案与SLA模板</li></ul></div>
+              <div class="card panel"><strong>流程</strong><ol class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>WhatsApp 沟通目标与约束（5–10 分钟）</li><li>现状体检与风险画像（免费评估）</li><li>制定 30–60 天执行清单</li><li>每周回顾与调整（可选）</li></ol></div>
+              <div class="card panel"><strong>适用对象</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>时间碎片化的上班族 / 学生</li><li>希望提升年化的持币用户</li><li>想低成本尝试节点/验证者的新手</li></ul><p class="muted" style="font-size:12px;margin-top:8px">不提供托管或代操作；资产始终在你的钱包。</p></div>
+              <div class="card panel"><strong>准备材料（建议）</strong><ul class="muted" style="padding-left:18px;margin:0"><li>可投入的预算区间与时间周期</li><li>首选链与钱包（如 Ledger/MetaMask）</li><li>可承受最大回撤与目标收益区间</li><li>是否考虑节点/验证者</li></ul></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap">
+              <a class="cta" href="#" onclick="return openWhatsAppMentor()">WhatsApp：立即对话</a>
+              <span class="muted" style="font-size:12px">我们通常在工作日内回复。</span>
+            </div>
+          </div>
+          <div class="card panel">
+            <h3 style="margin:0 0 8px">联系</h3>
+            <p class="muted" style="margin:0 0 10px">更喜欢邮件？也可以直接发给我们。</p>
+            <a class="ghost" href="mailto:hello@smartmine.app?subject=SmartMine%20Inquiry">hello@smartmine.app</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 style="margin:0 0 14px">Frequently asked questions</h2>
+        <details><summary>Is this custodial? Who controls the assets?</summary><p class="muted">SmartMine is non‑custodial. You authorize strategies from your own wallet, and you can withdraw or revoke at any time.</p></details>
+        <details><summary>What chains are supported?</summary><p class="muted">We aim to support major EVM chains at launch, with additional networks based on demand. Exact chain list may vary during beta.</p></details>
+        <details><summary>What are the risks?</summary><p class="muted">Smart contracts, slashing, depeg events, market volatility, and oracle failures are among the key risks. We use guardrails and monitoring, but risks cannot be eliminated.</p></details>
+        <details><summary>Do I need to run hardware?</summary><p class="muted">No dedicated hardware is required for most strategies. If you choose to operate a node or validator, we provide guides and templates.</p></details>
+        <details><summary>Fees?</summary><p class="muted">During beta we target no management fee and a performance‑based fee on realized rewards, shown clearly before confirmation. Fees are subject to change and will be disclosed.</p></details>
+        <details><summary>Is this available in my region?</summary><p class="muted">Availability depends on local laws and your residency. You are responsible for complying with applicable regulations in your jurisdiction.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky CTA for mobile -->
+  <div class="sticky-cta">
+    <a href="#" onclick="return openWhatsAppMentor()">💬 WhatsApp · 1:1 Mentor</a>
+  </div>
+
+  <footer id="terms">
+    <div class="container foot">
+      <div style="max-width:560px">
+        <strong>Disclaimer</strong>
+        <p class="muted" style="margin:.4rem 0 0; font-size:12px">Nothing on this page constitutes financial, legal, or tax advice. Digital assets are highly volatile and involve risk of loss. Past performance does not guarantee future results. Availability and features described here are subject to change.</p>
+      </div>
+      <div style="display:grid; gap:6px; min-width:260px">
+        <a href="#privacy">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Status</a>
+        <span class="muted">© <span id="yr"></span> Web3智能矿山</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const WA_NUMBER = "+15551234567"; // TODO: replace with your WhatsApp number (e.g., +358401234567)
+
+    const BRAND_DATA_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAABxW0lEQVR4nM...REPLACEME_SMALL"; // inlined brand icon (512x512)
+    const WA_NUMBER = "+15551234567"; // TODO: replace with your WhatsApp number (e.g., +358401234567)
+
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Calculator logic (illustrative only)
+    function apyRangeForTier(tier){
+      switch(tier){
+        case 'conservative': return [0.04, 0.08];
+        case 'balanced': return [0.08, 0.15];
+        case 'growth': return [0.15, 0.25];
+        default: return [0.06, 0.12];
+      }
+    }
+    function compound(principal, apy, months){
+      const r = apy; // annual yield as decimal
+      const m = months;
+      return principal * Math.pow(1 + r/12, m) - principal;
+    }
+    function fmtUSD(n){
+      return n.toLocaleString(undefined, { style:'currency', currency:'USD', maximumFractionDigits:0 });
+    }
+    function updateCalc(){
+      const capital = Math.max(0, Number(document.getElementById('capital').value || 0));
+      const tier = document.getElementById('tier').value;
+      const months = Number(document.getElementById('horizon').value || 12);
+      const [low, high] = apyRangeForTier(tier);
+      const min = compound(capital, low, months);
+      const max = compound(capital, high, months);
+      document.getElementById('res-range').textContent = `${fmtUSD(min)} to ${fmtUSD(max)}`;
+      document.getElementById('res-apy').textContent = `APY range: ${(low*100).toFixed(0)}% – ${(high*100).toFixed(0)}% (illustrative)`;
+      drawEarningsChartFromUI();
+    window.addEventListener('resize', drawEarningsChartFromUI);
+    }
+    updateCalc();
+    initBGFX(); inlineBrand(); suggestSplitIfLong();
+    initTiltCards();
+    initPlans();
+    initEarnings();
+    initMarquee();
+    initCounters();
+    drawEarningsChartFromUI();
+    initMarquee();
+    initCounters();
+    drawEarningsChartFromUI();
+
+    // Waitlist: build a mailto with form fields so it works on any static host
+    function sendWhatsApp(form){
+      const data = new FormData(form);
+      const body =
+        `SmartMine Waitlist Request
+`+
+        `Name: ${data.get('name') || ''}
+`+
+        `Email: ${data.get('email') || ''}
+`+
+        `Organization: ${data.get('org') || ''}
+`+
+        `Interest Tier: ${data.get('tier') || ''}
+
+`+
+        `Notes:
+${data.get('note') || ''}`;
+      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(body)}`;
+      window.open(url, '_blank');
+      form.reset();
+      return false;
+    }
+    function openWhatsAppMentor(){
+      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
+      const text = encodeURIComponent('你好导师！我想咨询Web3智能挖矿兼职项目，一对一指导。');
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+      return false;
+    }
+    function openWhatsAppGift(){
+      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
+      const text = encodeURIComponent('你好！我想领取新成员欢迎礼包：请发送注册步骤、独家教程、社区指南与岗位信息。');
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+      return false;
+    }?text=${text}`, '_blank');
+      return false;
+    }?text=${text}`, '_blank');
+      return false;
+    }
+
+    // Inline brand images & text-length hint
+    function inlineBrand(){
+      try{
+        const isValid = typeof BRAND_DATA_URI==='string' && BRAND_DATA_URI.startsWith('data:image/') && BRAND_DATA_URI.length>100 && !/REPLACEME/.test(BRAND_DATA_URI);
+        const imgs = document.querySelectorAll('img[data-brand]');
+        imgs.forEach(img=>{ img.src = isValid ? BRAND_DATA_URI : '/brand.png'; });
+        const favSel = ['link[rel="icon"][type="image/png"][sizes="32x32"]','link[rel="apple-touch-icon"]','link[rel="shortcut icon"]'];
+        favSel.forEach(sel=>{ const el=document.querySelector(sel); if(el) el.href = isValid ? BRAND_DATA_URI : '/brand.png'; });
+      }catch(e){}
+    });
+        const favSel = ['link[rel="icon"][type="image/png"][sizes="32x32"]','link[rel="apple-touch-icon"]','link[rel="shortcut icon"]'];
+        favSel.forEach(sel=>{ const el=document.querySelector(sel); if(el) el.href = BRAND_DATA_URI; });
+      }catch(e){}
+    }
+    function suggestSplitIfLong(selector='.auto-split, .panel p', threshold=220){
+      document.querySelectorAll(selector).forEach(el=>{
+        const t=(el.textContent||'').trim();
+        if(t.length>threshold && !el.dataset.splitSuggested){
+          const tip=document.createElement('div'); tip.className='muted tip-split'; tip.textContent='这段文字较长，建议拆成两段提升可读性。';
+          el.after(tip); el.dataset.splitSuggested='1';
+        }
+      });
+    }
+
+    // --- Sci‑fi background mesh ---
+    function initBGFX(){
+      const c = document.getElementById('bgfx'); if(!c) return;
+      const ctx = c.getContext('2d');
+      let w, h, dpr = window.devicePixelRatio || 1; const POINTS = 64; let pts=[];
+      function resize(){
+        w = innerWidth; h = innerHeight; c.width = w * dpr; c.height = h * dpr; c.style.width = w+'px'; c.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0);
+        pts = Array.from({length:POINTS}, ()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*0.45,vy:(Math.random()-.5)*0.45}));
+      }
+      function step(){
+        ctx.clearRect(0,0,w,h);
+        for(const p of pts){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1; }
+        for(let i=0;i<pts.length;i++){
+          const p=pts[i];
+          for(let j=i+1;j<pts.length;j++){
+            const q=pts[j]; const dx=p.x-q.x, dy=p.y-q.y; const dist=Math.hypot(dx,dy);
+            if(dist<140){ const a=(1-dist/140)*.6; ctx.strokeStyle=`rgba(34,211,238,${a})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+          }
+          ctx.fillStyle='rgba(167,139,250,0.70)'; ctx.beginPath(); ctx.arc(p.x,p.y,1.2,0,Math.PI*2); ctx.fill();
+        }
+        requestAnimationFrame(step);
+      }
+      resize(); step(); window.addEventListener('resize', resize);
+    }
+
+    // --- Subtle 3D tilt on cards ---
+    function initTiltCards(){
+      const cards = Array.from(document.querySelectorAll('.card'));
+      cards.forEach(card=>{
+        card.addEventListener('mousemove', e=>{
+          const r = card.getBoundingClientRect();
+          const x=(e.clientX - r.left)/r.width; const y=(e.clientY - r.top)/r.height;
+          const rx=(.5 - y)*8; const ry=(x - .5)*8;
+          card.style.transform=`perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+        card.addEventListener('mouseleave', ()=>{ card.style.transform=''; });
+      });
+    }
+
+    // Plan returns calculator (compounded daily)
+    function initPlans(){
+      const fmtPct = n => (n*100).toFixed(2)+'%';
+      document.querySelectorAll('.plan').forEach((el)=>{
+        const days = Number(el.dataset.days||0);
+        const rmin = Number(el.dataset.rmin||0); // daily
+        const rmax = Number(el.dataset.rmax||0); // daily
+        const min = Math.pow(1+rmin, days)-1;
+        const max = Math.pow(1+rmax, days)-1;
+        const id = (el.dataset.code||'').toLowerCase();
+        const target = document.getElementById(id+'-total') || el.querySelector('.muted');
+        if(target){ target.textContent = `Est. total over term: ${fmtPct(min)} – ${fmtPct(max)}`; }
+      });
+    }
+
+    function openWhatsAppPlan(code){
+      const el = document.querySelector(`.plan[data-code="${code}"]`); if(!el) return false;
+      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
+      const days = el.dataset.days, min=el.dataset.mincap, max=el.dataset.maxcap, rmin=el.dataset.rmin, rmax=el.dataset.rmax;
+      const msg = `Hi, I'm interested in Liquidity Mining ${code}.
+`+
+                  `Term: ${days} days
+`+
+                  `Limits: $${Number(min).toLocaleString()} - $${Number(max).toLocaleString()}
+`+
+                  `Daily range: ${(Number(rmin)*100).toFixed(2)}% - ${(Number(rmax)*100).toFixed(2)}%`;
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      return false;
+    }
+
+  
+    // --- Marquee ---
+    function initMarquee(){
+      const track = document.getElementById('ticker-track'); if(!track) return;
+      // duplicate content to create seamless loop
+      track.innerHTML = track.innerHTML + track.innerHTML;
+    }
+
+    // --- Counters ---
+    function initCounters(){
+      const el = document.getElementById('stat-sim-users'); if(!el) return;
+      const target = Number(el.dataset.count||0);
+      const io = new IntersectionObserver(([e])=>{
+        if(!e.isIntersecting) return;
+        let cur = 0; const dur = 1300; const t0 = performance.now();
+        function step(t){
+          const k = Math.min(1,(t-t0)/dur); cur = Math.floor(target * (0.5 - Math.cos(k*Math.PI)/2));
+          el.textContent = cur.toLocaleString() + '+'; if(k<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step); io.disconnect();
+      },{threshold:.5}); io.observe(el);
+    }
+
+    // --- Earnings chart ---
+    function initEarnings(){
+      const sec = document.getElementById('earnings'); if(!sec) return;
+      const io = new IntersectionObserver(([e])=>{ if(e.isIntersecting){ drawEarningsChartFromUI(); io.disconnect(); } }, {threshold:.15});
+      io.observe(sec);
+      // 保险：初始也渲染一次，避免出现空白
+      requestAnimationFrame(drawEarningsChartFromUI);
+    } }, {threshold:.2});
+      io.observe(sec);
+    }
+    function drawEarningsChartFromUI(){
+      const capital = Math.max(0, Number(document.getElementById('capital').value || 0));
+      const months = Number(document.getElementById('horizon').value || 12);
+      const tier = document.getElementById('tier').value; const [low, high] = apyRangeForTier(tier);
+      drawEarningsChart(capital, months, low, high, tier);
+    }
+    function drawEarningsChart(capital, months, low, high, tier){
+      const c = document.getElementById('earnChart'); if(!c) return; const ctx = c.getContext('2d'); const w = c.width = c.clientWidth; const h = c.height; ctx.clearRect(0,0,w,h);
+      const gbg = ctx.createLinearGradient(0,0,0,h); gbg.addColorStop(0,'rgba(255,255,255,0.02)'); gbg.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle = gbg; for(let i=0;i<8;i++){ const y=i*h/8; ctx.fillRect(0,y,w, h/16); }
+      const ptsLow=[], ptsHigh=[]; for(let m=0;m<=months;m++){ const t=m/months; const yL = compound(capital, low, m); const yH = compound(capital, high, m); ptsLow.push([t,yL]); ptsHigh.push([t,yH]); }
+      const maxV = Math.max(...ptsHigh.map(p=>p[1]))*1.05 || 1; function x(t){ return 40 + t*(w-60); } function y(v){ return h-30 - (v/maxV)*(h-60); }
+      ctx.strokeStyle='rgba(155,179,217,0.18)'; ctx.lineWidth=1; for(let i=0;i<=months;i+=Math.max(1,Math.floor(months/6))){ const X=x(i/months); ctx.beginPath(); ctx.moveTo(X, h-30); ctx.lineTo(X, 16); ctx.stroke(); }
+      for(let r=0;r<4;r++){ const Y = 16 + r*((h-46)/3); ctx.beginPath(); ctx.moveTo(40,Y); ctx.lineTo(w-20,Y); ctx.stroke(); }
+      const grad = ctx.createLinearGradient(0,16,0,h-30); grad.addColorStop(0,'rgba(34,211,238,0.20)'); grad.addColorStop(1,'rgba(167,139,250,0.12)');
+      ctx.beginPath(); ctx.moveTo(x(ptsLow[0][0]), y(ptsLow[0][1])); ptsLow.forEach(([t,v])=>ctx.lineTo(x(t), y(v))); for(let i=ptsHigh.length-1;i>=0;i--){ const [t,v]=ptsHigh[i]; ctx.lineTo(x(t), y(v)); } ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+      function drawLine(pts, color){ ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x(pts[0][0]), y(pts[0][1])); pts.forEach(([t,v])=>ctx.lineTo(x(t), y(v))); ctx.stroke(); }
+      drawLine(ptsLow, 'rgba(34,211,238,0.9)'); drawLine(ptsHigh, 'rgba(167,139,250,0.9)');
+      ctx.fillStyle='rgba(234,242,255,0.9)'; ctx.font='12px Inter, system-ui'; ctx.fillText('Months', w-60, h-10); ctx.save(); ctx.translate(12, 40); ctx.rotate(-Math.PI/2); ctx.fillText('Rewards (USD, illustrative)', 0, 0); ctx.restore();
+      const min = compound(capital, low, months); const max = compound(capital, high, months);
+      const fmt = n=> n.toLocaleString(undefined, { style:'currency', currency:'USD', maximumFractionDigits:0 });
+      const bnMin = document.getElementById('bn-min'); const bnMax = document.getElementById('bn-max'); const legend = document.getElementById('bn-legend'); const avgEl = document.getElementById('bn-avg');
+      if(bnMin) bnMin.textContent = '+'+fmt(min);
+      if(bnMax) bnMax.textContent = '+'+fmt(max);
+      if(legend) legend.textContent = months+" 个月 · "+ tier.charAt(0).toUpperCase()+tier.slice(1) + " 档";
+      if(avgEl){ const avgMin = min/(months*30); const avgMax = max/(months*30); avgEl.textContent = `等效日均：${fmt(avgMin)} – ${fmt(avgMax)}`; }
+    }
+
+    function setCapital(v){ const inp=document.getElementById('capital'); if(!inp) return; inp.value=v; updateCalc(); }
+
+    function drawEarningsChart(capital, months, low, high, tier){
+      const c = document.getElementById('earnChart'); if(!c) return; const ctx = c.getContext('2d'); const w = c.width = c.clientWidth; const h = c.height; ctx.clearRect(0,0,w,h);
+      // background stripes to避免空白
+      const gbg = ctx.createLinearGradient(0,0,0,h); gbg.addColorStop(0,'rgba(255,255,255,0.02)'); gbg.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle = gbg; for(let i=0;i<8;i++){ const y=i*h/8; ctx.fillRect(0,y,w, h/16); }
+      const ptsLow=[], ptsHigh=[]; for(let m=0;m<=months;m++){ const t=m/months; const yL = compound(capital, low, m); const yH = compound(capital, high, m); ptsLow.push([t,yL]); ptsHigh.push([t,yH]); }
+      const maxV = Math.max(...ptsHigh.map(p=>p[1]))*1.05 || 1; // guard
+      function x(t){ return 40 + t*(w-60); } function y(v){ return h-30 - (v/maxV)*(h-60); }
+      // grid
+      ctx.strokeStyle='rgba(155,179,217,0.18)'; ctx.lineWidth=1; for(let i=0;i<=months;i+=Math.max(1,Math.floor(months/6))){ const X=x(i/months); ctx.beginPath(); ctx.moveTo(X, h-30); ctx.lineTo(X, 16); ctx.stroke(); }
+      for(let r=0;r<4;r++){ const Y = 16 + r*((h-46)/3); ctx.beginPath(); ctx.moveTo(40,Y); ctx.lineTo(w-20,Y); ctx.stroke(); }
+      // shade area between low-high
+      const grad = ctx.createLinearGradient(0,16,0,h-30); grad.addColorStop(0,'rgba(34,211,238,0.20)'); grad.addColorStop(1,'rgba(167,139,250,0.12)');
+      ctx.beginPath(); ctx.moveTo(x(ptsLow[0][0]), y(ptsLow[0][1])); ptsLow.forEach(([t,v])=>ctx.lineTo(x(t), y(v))); for(let i=ptsHigh.length-1;i>=0;i--){ const [t,v]=ptsHigh[i]; ctx.lineTo(x(t), y(v)); } ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+      // glow lines
+      function drawLine(pts, color){ ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x(pts[0][0]), y(pts[0][1])); pts.forEach(([t,v])=>ctx.lineTo(x(t), y(v))); ctx.stroke(); }
+      drawLine(ptsLow, 'rgba(34,211,238,0.9)'); drawLine(ptsHigh, 'rgba(167,139,250,0.9)');
+      // labels
+      ctx.fillStyle='rgba(234,242,255,0.9)'; ctx.font='12px Inter, system-ui'; ctx.fillText('Months', w-60, h-10); ctx.save(); ctx.translate(12, 40); ctx.rotate(-Math.PI/2); ctx.fillText('Rewards (USD, illustrative)', 0, 0); ctx.restore();
+      // overlay numbers & avg
+      const min = compound(capital, low, months); const max = compound(capital, high, months);
+      const fmt = n=> n.toLocaleString(undefined, { style:'currency', currency:'USD', maximumFractionDigits:0 });
+      const bnMin = document.getElementById('bn-min'); const bnMax = document.getElementById('bn-max'); const legend = document.getElementById('bn-legend'); const avgEl = document.getElementById('bn-avg');
+      if(bnMin) bnMin.textContent = '+'+fmt(min);
+      if(bnMax) bnMax.textContent = '+'+fmt(max);
+      if(legend) legend.textContent = months+" 个月 · "+ tier.charAt(0).toUpperCase()+tier.slice(1) + " 档";
+      if(avgEl){ const avgMin = min/(months*30); const avgMax = max/(months*30); avgEl.textContent = `等效日均：${fmt(avgMin)} – ${fmt(avgMax)}`; }
+    }
+      const maxV = Math.max(...ptsHigh.map(p=>p[1]))*1.05 || 1; // guard
+      function x(t){ return 40 + t*(w-60); } function y(v){ return h-30 - (v/maxV)*(h-60); }
+      // grid
+      ctx.strokeStyle='rgba(155,179,217,0.18)'; ctx.lineWidth=1; for(let i=0;i<=months;i+=Math.max(1,Math.floor(months/6))){ const X=x(i/months); ctx.beginPath(); ctx.moveTo(X, h-30); ctx.lineTo(X, 20); ctx.stroke(); }
+      for(let r=0;r<5;r++){ const Y = 20 + r*((h-50)/4); ctx.beginPath(); ctx.moveTo(40,Y); ctx.lineTo(w-20,Y); ctx.stroke(); }
+      // shade area between low-high
+      const grad = ctx.createLinearGradient(0,20,0,h-30); grad.addColorStop(0,'rgba(34,211,238,0.20)'); grad.addColorStop(1,'rgba(167,139,250,0.12)');
+      ctx.beginPath(); ctx.moveTo(x(ptsLow[0][0]), y(ptsLow[0][1])); ptsLow.forEach(([t,v])=>ctx.lineTo(x(t), y(v))); for(let i=ptsHigh.length-1;i>=0;i--){ const [t,v]=ptsHigh[i]; ctx.lineTo(x(t), y(v)); } ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+      // glow lines
+      function drawLine(pts, color){ ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x(pts[0][0]), y(pts[0][1])); pts.forEach(([t,v])=>ctx.lineTo(x(t), y(v))); ctx.stroke(); }
+      drawLine(ptsLow, 'rgba(34,211,238,0.9)'); drawLine(ptsHigh, 'rgba(167,139,250,0.9)');
+      // labels
+      ctx.fillStyle='rgba(234,242,255,0.9)'; ctx.font='12px Inter, system-ui'; ctx.fillText('Months', w-60, h-10); ctx.save(); ctx.translate(12, 40); ctx.rotate(-Math.PI/2); ctx.fillText('Rewards (USD, illustrative)', 0, 0); ctx.restore();
+      // overlay big numbers
+      const min = compound(capital, low, months); const max = compound(capital, high, months);
+      const fmt = n=> n.toLocaleString(undefined, { style:'currency', currency:'USD', maximumFractionDigits:0 });
+      const bnMin = document.getElementById('bn-min'); const bnMax = document.getElementById('bn-max'); const legend = document.getElementById('bn-legend');
+      if(bnMin) bnMin.textContent = '+'+fmt(min);
+      if(bnMax) bnMax.textContent = '+'+fmt(max);
+      if(legend) legend.textContent = months+" months · "+ tier.charAt(0).toUpperCase()+tier.slice(1) + " tier";
+    }
+
+  </script>
+</body>
+</html>
