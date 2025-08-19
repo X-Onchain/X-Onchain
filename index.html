@@ -26,7 +26,6 @@
   <style>
     :root{
       --bg: #030712;
-      --bg-soft: #070e1d;
       --card: #0b1329;
       --border: #17234a;
       --text: #eaf2ff;
@@ -38,13 +37,19 @@
       --shadow: 0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:
-      radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%),
-      radial-gradient(800px 500px at 120% 10%, rgba(167,139,250,.10), transparent 60%),
-      var(--bg); color:var(--text); font:16px/1.5 'Inter', system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    html,body{
+      margin:0;padding:0;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%),
+        radial-gradient(800px 500px at 120% 10%, rgba(167,139,250,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font:16px/1.5 'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    }
     a{color:var(--accent); text-decoration:none}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
 
+    /* Header */
     header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(10px); background:rgba(7,11,18,.6); border-bottom:1px solid var(--border); z-index:50}
     .nav{display:flex;align-items:center;justify-content:space-between; gap:20px; height:64px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
@@ -57,15 +62,18 @@
     section{padding:54px 0}
     .tight{padding:38px 0} .dense{padding:26px 0}
 
+    /* Cards */
     .card{position:relative;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 40%), var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
     .card::before{content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;background:linear-gradient(135deg, rgba(34,211,238,.5), rgba(167,139,250,.35));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;}
     .panel{padding:22px}
 
+    /* Typography */
     h1,h2,h3{font-family:'Orbitron',sans-serif; letter-spacing:.02em}
     h1{font-size: clamp(32px,5vw,56px); line-height:1.05; margin:.6rem 0 1rem}
     .sub{font-size:clamp(16px,2.2vw,20px); color:var(--muted)}
     .actions{display:flex; gap:12px; margin:24px 0 10px}
 
+    /* Hero visual */
     .hero{padding:84px 0 40px}
     .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr; gap:36px; align-items:center}
     .eyebrow{display:inline-flex;gap:8px; align-items:center; padding:6px 10px;border:1px solid var(--border);border-radius:999px; color:var(--muted); font-weight:700}
@@ -89,30 +97,23 @@
     .orb .orb-logo{width:58%; height:auto; border-radius:22px; opacity:.95; mix-blend-mode:screen; filter: brightness(1.18) contrast(1.1) saturate(1.25) hue-rotate(185deg); box-shadow:0 0 48px rgba(34,211,238,.25),0 0 96px rgba(167,139,250,.18)}
     @keyframes spin{to{transform:rotate(360deg)}}
 
+    /* Grids and lists */
     .stats{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:26px}
     .stat .k{font-weight:900;font-size:28px}
     .stat .label{color:var(--muted);font-size:13px}
-
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-
     .benefits{margin:.2rem 0 .4rem; padding-left:0; list-style:none; display:grid; gap:6px}
     .benefits li{position:relative; padding-left:22px}
     .benefits li::before{content:"✔"; position:absolute; left:0; top:0; color:var(--accent)}
-
     .plans{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; grid-auto-rows:1fr}
     .plan{display:flex; flex-direction:column; height:100%}
-    .plan h3{margin:.2rem 0 .4rem}
     .plan .meta{display:flex; gap:8px; flex-wrap:wrap; margin:.3rem 0 .4rem}
     .chip{font-size:12px; border:1px solid var(--border); border-radius:999px; padding:4px 8px; color:var(--muted); white-space:nowrap}
     .plan .yield{font: 800 22px/1 'Orbitron', sans-serif; margin:.3rem 0 .2rem}
-    .plan .term{color:var(--muted)}
-    .plan .cap{color:#b9c8e6}
     .plan .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
-
     .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
     .step .n{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; display:grid; place-items:center}
-
     .badge{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border); color:var(--muted)}
     .risk-low{background:rgba(52,211,153,.1); color:#77f0c2; border-color:rgba(52,211,153,.3)}
     .risk-med{background:rgba(245,158,11,.1); color:#ffd182; border-color:rgba(245,158,11,.3)}
@@ -136,7 +137,16 @@
 
     @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* ==== Intro / Splash ==== */
+    /* ===== Canvas as BACKGROUND (does not occupy layout) ===== */
+    #bgfx{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      display: block;
+      pointer-events: none;
+    }
+
+    /* ===== Intro / Splash ===== */
     html.no-scroll, body.no-scroll { overflow: hidden; }
     #intro{
       position:fixed; inset:0; z-index:2000;
@@ -170,6 +180,7 @@
   </style>
 </head>
 <body>
+  <!-- BACKGROUND canvas -->
   <canvas id="bgfx" aria-hidden="true"></canvas>
 
   <!-- Splash Intro -->
@@ -183,6 +194,7 @@
     </div>
   </div>
 
+  <!-- NAV -->
   <header>
     <div class="container nav">
       <div class="brand"><div class="logo"><img data-brand alt="Brand logo" /></div> <span>Web3 Intelligent Mine</span></div>
@@ -199,6 +211,7 @@
     </div>
   </header>
 
+  <!-- MAIN -->
   <main>
     <section class="ticker" style="border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(34,211,238,.06), transparent)">
       <div class="container" style="overflow:hidden">
@@ -212,7 +225,7 @@
       </div>
     </section>
 
-    <!-- Hero with Priority CTA -->
+    <!-- Hero with priority CTA -->
     <section id="welcome" class="hero">
       <div class="container card panel" style="backdrop-filter: blur(12px) saturate(140%)">
         <div class="wrap">
@@ -296,40 +309,37 @@
       </div>
     </section>
 
-    <!-- Liquidity mining plans -->
+    <!-- Liquidity plans -->
     <section id="liquidity" class="dense">
       <div class="container">
         <h2 style="margin:0 0 14px">Liquidity mining plans</h2>
         <div class="plans">
           <div class="card panel plan" data-code="V1" data-days="3" data-mincap="500" data-maxcap="5000" data-rmin="0.015" data-rmax="0.025">
             <h3>V1 · Starter</h3>
-            <div class="meta"><span class="chip term">Term: 3 days</span><span class="chip cap">Limit: $500 – $5,000</span></div>
+            <div class="meta"><span class="chip">Term: 3 days</span><span class="chip">Limit: $500 – $5,000</span></div>
             <div class="yield">Daily: 1.5% – 2.5%</div>
-            <p class="muted" id="v1-total">Est. total over term: —</p>
+            <p class="muted">Est. total over term: —</p>
             <div class="cta-row"><a class="cta" href="#" onclick="return openWhatsAppPlan('V1')">Join V1 via WhatsApp</a><a class="ghost" href="#welcome">Ask mentor</a></div>
           </div>
-
           <div class="card panel plan" data-code="V2" data-days="25" data-mincap="5000" data-maxcap="500000" data-rmin="0.0175" data-rmax="0.0275">
             <h3>V2 · Pro</h3>
-            <div class="meta"><span class="chip term">Term: 25 days</span><span class="chip cap">Limit: $5,000 – $500,000</span></div>
+            <div class="meta"><span class="chip">Term: 25 days</span><span class="chip">Limit: $5,000 – $500,000</span></div>
             <div class="yield">Daily: 1.75% – 2.75%</div>
-            <p class="muted" id="v2-total">Est. total over term: —</p>
+            <p class="muted">Est. total over term: —</p>
             <div class="cta-row"><a class="cta" href="#" onclick="return openWhatsAppPlan('V2')">Join V2 via WhatsApp</a><a class="ghost" href="#welcome">Ask mentor</a></div>
           </div>
-
           <div class="card panel plan" data-code="V3" data-days="60" data-mincap="10000" data-maxcap="3000000" data-rmin="0.0185" data-rmax="0.0285">
             <h3>V3 · Growth</h3>
-            <div class="meta"><span class="chip term">Term: 60 days</span><span class="chip cap">Limit: $10,000 – $3,000,000</span></div>
+            <div class="meta"><span class="chip">Term: 60 days</span><span class="chip">Limit: $10,000 – $3,000,000</span></div>
             <div class="yield">Daily: 1.85% – 2.85%</div>
-            <p class="muted" id="v3-total">Est. total over term: —</p>
+            <p class="muted">Est. total over term: —</p>
             <div class="cta-row"><a class="cta" href="#" onclick="return openWhatsAppPlan('V3')">Join V3 via WhatsApp</a><a class="ghost" href="#welcome">Ask mentor</a></div>
           </div>
-
           <div class="card panel plan" data-code="V4" data-days="130" data-mincap="30000" data-maxcap="5000000" data-rmin="0.0195" data-rmax="0.0295">
             <h3>V4 · Titan</h3>
-            <div class="meta"><span class="chip term">Term: 130 days</span><span class="chip cap">Limit: $30,000 – $5,000,000</span></div>
+            <div class="meta"><span class="chip">Term: 130 days</span><span class="chip">Limit: $30,000 – $5,000,000</span></div>
             <div class="yield">Daily: 1.95% – 2.95%</div>
-            <p class="muted" id="v4-total">Est. total over term: —</p>
+            <p class="muted">Est. total over term: —</p>
             <div class="cta-row"><a class="cta" href="#" onclick="return openWhatsAppPlan('V4')">Join V4 via WhatsApp</a><a class="ghost" href="#welcome">Ask mentor</a></div>
           </div>
         </div>
@@ -397,11 +407,10 @@
     const WA_NUMBER = "+15551234567"; /* Replace with your number (include country code) */
     const BRAND_DATA_URI = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cg fill='white' font-family='Orbitron,Arial,Helvetica,sans-serif' text-anchor='middle'%3E%3Ctext x='128' y='160' font-size='112' font-weight='700'%3EW3%3C/text%3E%3C/g%3E%3C/svg%3E";
 
-    /* ===== UTIL ===== */
     const $ = sel => document.querySelector(sel);
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    /* ===== WhatsApp ===== */
+    /* ===== WhatsApp helpers ===== */
     function openWhatsAppPlan(code){
       const el = document.querySelector('.plan[data-code="'+code+'"]'); if(!el) return false;
       const phone = WA_NUMBER.replace(/[^0-9]/g,'');
@@ -466,7 +475,7 @@ Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(
       });
     }
 
-    /* ===== Plan totals (to-term) ===== */
+    /* ===== Plan totals ===== */
     function initPlans(){
       const f = n => (n*100).toFixed(2)+'%';
       document.querySelectorAll('.plan').forEach(el=>{
@@ -506,7 +515,6 @@ Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(
         "AI-driven allocations. Human control.",
         "Your keys. Your rewards."
       ];
-
       let i = 0;
       const swap = () => { lineEl.textContent = lines[i % lines.length]; i++; };
       swap();
@@ -517,6 +525,13 @@ Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(
         intro.classList.add('hide');
         document.documentElement.classList.remove('no-scroll');
         document.body.classList.remove('no-scroll');
+
+        // Jump straight to main content (Welcome)
+        const target = document.getElementById('welcome');
+        if (target) {
+          const y = target.getBoundingClientRect().top + window.pageYOffset - 8;
+          window.scrollTo({ top: y, behavior: 'auto' });
+        }
         setTimeout(()=> intro.remove(), 480);
       };
 
