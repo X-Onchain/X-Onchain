@@ -25,27 +25,18 @@
 
   <style>
     :root{
-      --bg: #030712;
-      --card: #0b1329;
-      --border: #17234a;
-      --text: #eaf2ff;
-      --muted: #9bb3d9;
-      /* Onchain-style default */
-      --accent: #20e3b2;
-      --accent-2: #8b5cf6;
-      --ok: #34d399;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
+      --bg:#030712; --card:#0b1329; --border:#17234a; --text:#eaf2ff; --muted:#9bb3d9;
+      /* Onchain style as default */
+      --accent:#20e3b2; --accent-2:#8b5cf6; --ok:#34d399;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
     }
     *{box-sizing:border-box}
     html,body{
-      margin:0;padding:0;
-      background:
+      margin:0;padding:0;background:
         radial-gradient(1200px 600px at 10% -10%, rgba(34,211,238,.12), transparent 60%),
         radial-gradient(800px 500px at 120% 10%, rgba(167,139,250,.10), transparent 60%),
         var(--bg);
-      color:var(--text);
-      font:16px/1.5 'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text); font:16px/1.5 'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
     }
     a{color:var(--accent); text-decoration:none}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
@@ -56,20 +47,31 @@
     .logo{width:36px;height:36px;border-radius:10px;overflow:hidden;display:grid;place-items:center;box-shadow:var(--shadow);background:#0f1729}
     .logo img{width:100%;height:100%;object-fit:cover}
     .links{display:flex;align-items:center;gap:18px}
-    .cta{padding:.7rem 1rem;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; box-shadow:var(--shadow)}
+    .cta{
+      display:inline-block; padding:.7rem 1rem; border:1px solid transparent; border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900;
+      box-shadow:var(--shadow); position:relative; z-index:2; pointer-events:auto;
+    }
     .ghost{padding:.6rem .9rem;border:1px solid var(--border);border-radius:12px;background:transparent;color:var(--text)}
 
     section{padding:54px 0}
     .tight{padding:38px 0} .dense{padding:26px 0}
 
     .card{position:relative;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 40%), var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
-    .card::before{content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;background:linear-gradient(135deg, rgba(34,211,238,.5), rgba(167,139,250,.35));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;}
+    .card::before{
+      content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;
+      background:linear-gradient(135deg, rgba(34,211,238,.5), rgba(167,139,250,.35));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;
+      /* critical: let clicks pass through so inner <a> works */
+      pointer-events:none;
+    }
     .panel{padding:22px}
 
     h1,h2,h3{font-family:'Orbitron',sans-serif; letter-spacing:.02em}
     h1{font-size: clamp(32px,5vw,56px); line-height:1.05; margin:.6rem 0 1rem}
     .sub{font-size:clamp(16px,2.2vw,20px); color:var(--muted)}
-    .actions{display:flex; gap:12px; margin:24px 0 10px}
+    .actions{display:flex; gap:12px; margin:24px 0 10px; position:relative; z-index:2}
 
     .hero{padding:84px 0 40px}
     .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr; gap:36px; align-items:center}
@@ -88,7 +90,9 @@
     .orb{width:clamp(260px,28vw,460px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:
       radial-gradient(closest-side, rgba(34,211,238,.35), rgba(34,211,238,0) 60%),
       conic-gradient(from 0deg, rgba(167,139,250,.25), rgba(34,211,238,.25), rgba(129,140,248,.25), rgba(167,139,250,.25));
-    filter: drop-shadow(0 0 24px rgba(34,211,238,.25)) drop-shadow(0 0 56px rgba(167,139,250,.2)); animation: spin 28s linear infinite}
+      filter: drop-shadow(0 0 24px rgba(34,211,238,.25)) drop-shadow(0 0 56px rgba(167,139,250,.2));
+      animation: spin 28s linear infinite;
+    }
     .orb .orb-logo{width:58%; height:auto; border-radius:22px; opacity:.95; mix-blend-mode:screen; filter: brightness(1.18) contrast(1.1) saturate(1.25) hue-rotate(185deg); box-shadow:0 0 48px rgba(34,211,238,.25),0 0 96px rgba(167,139,250,.18)}
     @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -118,7 +122,7 @@
     footer{padding:40px 0; border-top:1px solid var(--border); color:#a7b6d6}
     .foot{display:flex; gap:16px; justify-content:space-between; flex-wrap:wrap}
 
-    @media (max-width: 980px){
+    @media (max-width:980px){
       .hero .wrap{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr 1fr}
       .grid-4{grid-template-columns:1fr 1fr}
@@ -126,7 +130,7 @@
       .steps{grid-template-columns:1fr 1fr}
       .orb{width:min(68vw,420px)}
     }
-    @media (max-width: 680px){
+    @media (max-width:680px){
       .links{display:none}
       .grid-3,.grid-4,.steps{grid-template-columns:1fr}
       .grid-floor{opacity:.6}
@@ -140,27 +144,18 @@
     /* Intro / Splash */
     html.no-scroll, body.no-scroll { overflow: hidden; }
     #intro{
-      position:fixed; inset:0; z-index:2000;
-      display:grid; place-items:center;
+      position:fixed; inset:0; z-index:2000; display:grid; place-items:center;
       background: radial-gradient(1000px 600px at 20% 0%, rgba(34,211,238,.10), transparent 60%),
                   radial-gradient(900px 520px at 100% 30%, rgba(167,139,250,.10), transparent 60%),
                   rgba(3,7,18,.85);
-      backdrop-filter: blur(4px) saturate(130%);
-      transition: opacity .45s ease;
+      backdrop-filter: blur(4px) saturate(130%); transition: opacity .45s ease;
     }
-    #intro.hide{ opacity:0; pointer-events:none; }
+    #intro.hide{ opacity:0; pointer-events:none; display:none; }
     .intro-wrap{ text-align:center; padding: 28px; max-width: 960px; }
-    .intro-eyebrow{
-      display:inline-block; padding:6px 10px; margin-bottom:10px;
-      border:1px solid var(--border); border-radius:999px; color:#9bb3d9;
-      letter-spacing:.14em; font-weight:700; font-size:12px;
-    }
+    .intro-eyebrow{ display:inline-block; padding:6px 10px; margin-bottom:10px; border:1px solid var(--border);
+      border-radius:999px; color:#9bb3d9; letter-spacing:.14em; font-weight:700; font-size:12px; }
     .intro-title{ margin:.2rem 0 .6rem; font: 800 clamp(28px,5vw,56px)/1.08 'Orbitron', sans-serif; }
-    #intro-line{
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      animation: glow 2.2s ease-in-out infinite;
-    }
+    #intro-line{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent; animation: glow 2.2s ease-in-out infinite; }
     .intro-sub{ color:#b9c8e6; margin:.2rem 0 1rem; }
     .intro-progress{ height:3px; width:min(540px,80vw); margin:12px auto 14px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden; }
     .intro-progress .bar{ display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); animation: fill 4.2s linear forwards; }
@@ -199,10 +194,11 @@
         <a href="#strategies">Strategies</a>
         <a href="#faq">FAQ</a>
         <a class="ghost" href="#contact">Contact</a>
-        <!-- Theme switcher removed as requested -->
-        <a class="cta" target="_blank" rel="noopener" 
+        <!-- Theme switcher removed -->
+        <!-- Top-right CTA: direct WA link -->
+        <a class="cta" target="_blank" rel="noopener noreferrer"
            href="https://wa.me/46766922734?text=Hi!%20Please%20send%20the%20Welcome%20Kit:%20onboarding%20steps,%20tutorials,%20community%20guide,%20and%20upcoming%20roles.">
-           Send Message
+          Send Message
         </a>
       </nav>
     </div>
@@ -240,7 +236,8 @@
               </ul>
               <p class="muted" style="margin:0 0 .5rem">Free to join, simple signup—start your journey today.</p>
               <div class="actions">
-                <a class="cta" target="_blank" rel="noopener"
+                <!-- HERO CTA: direct WA link -->
+                <a class="cta" target="_blank" rel="noopener noreferrer"
                    href="https://wa.me/46766922734?text=Hi!%20Please%20send%20the%20Welcome%20Kit:%20onboarding%20steps,%20tutorials,%20community%20guide,%20and%20upcoming%20roles.">
                   Send Message • Get Welcome Kit
                 </a>
@@ -326,231 +323,3 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- How it works -->
-    <section id="how">
-      <div class="container">
-        <h2 style="margin:0 0 18px">How it works</h2>
-        <div class="steps">
-          <div class="card panel step"><div class="n">1</div><h3>Connect</h3><p class="muted">Hook up your wallet. No deposits to us; assets stay in your control.</p></div>
-          <div class="card panel step"><div class="n">2</div><h3>Choose</h3><p class="muted">Pick a conservative, balanced, or growth strategy. Swap anytime.</p></div>
-          <div class="card panel step"><div class="n">3</div><h3>Allocate</h3><p class="muted">Set budget, limits, and optional stop-loss. Preview projected ranges.</p></div>
-          <div class="card panel step"><div class="n">4</div><h3>Earn</h3><p class="muted">Rewards accrue to your wallet. Withdraw or compound on your schedule.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Strategy tiers -->
-    <section id="strategies" class="tight">
-      <div class="container">
-        <h2 style="margin:0 0 18px">Strategy tiers</h2>
-        <div class="grid-3">
-          <div class="card panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0">Conservative</h3><span class="badge risk-low">Lower risk</span></div><p class="muted">Primarily PoS staking and blue-chip LSTs. Goal: capital preservation with steady rewards.</p><ul class="muted" style="padding-left:18px;margin:0 0 8px"><li>Assets: LSTs (e.g., stETH), major PoS tokens</li><li>Target range (illustrative): 4–8% APY</li><li>Auto-compounding, slashing insurance optional</li></ul></div>
-          <div class="card panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0">Balanced</h3><span class="badge risk-med">Medium risk</span></div><p class="muted">Blend of staking, restaking, and stable-pair LPs with capped exposure to new protocols.</p><ul class="muted" style="padding-left:18px;margin:0 0 8px"><li>Assets: LST/LRT, stable LP vaults</li><li>Target range (illustrative): 8–15% APY</li><li>Drawdown guardrails and weekly rebalance</li></ul></div>
-          <div class="card panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0">Growth</h3><span class="badge risk-high">Higher risk</span></div><p class="muted">Opportunistic restaking, points campaigns, and programmatic LP strategies. Strict position sizing.</p><ul class="muted" style="padding-left:18px;margin:0 0 8px"><li>Assets: LRTs, rotating incentives</li><li>Target range (illustrative): 15–25%+ APY</li><li>Daily risk checks and alerting</li></ul></div>
-        </div>
-        <p class="muted" style="margin-top:10px;font-size:12px">Ranges are for illustration only, not promises or guarantees. Digital assets are volatile. Do your own research.</p>
-      </div>
-    </section>
-
-    <!-- Liquidity plans (CTAs removed) -->
-    <section id="liquidity" class="dense">
-      <div class="container">
-        <h2 style="margin:0 0 14px">Liquidity mining plans</h2>
-        <div class="plans">
-          <div class="card panel plan" data-code="V1" data-days="3" data-mincap="500" data-maxcap="5000" data-rmin="0.015" data-rmax="0.025">
-            <h3>V1 · Starter</h3>
-            <div class="meta"><span class="chip">Term: 3 days</span><span class="chip">Limit: $500 – $5,000</span></div>
-            <div class="yield">Daily: 1.5% – 2.5%</div>
-            <p class="muted">Est. total over term: —</p>
-          </div>
-          <div class="card panel plan" data-code="V2" data-days="25" data-mincap="5000" data-maxcap="500000" data-rmin="0.0175" data-rmax="0.0275">
-            <h3>V2 · Pro</h3>
-            <div class="meta"><span class="chip">Term: 25 days</span><span class="chip">Limit: $5,000 – $500,000</span></div>
-            <div class="yield">Daily: 1.75% – 2.75%</div>
-            <p class="muted">Est. total over term: —</p>
-          </div>
-          <div class="card panel plan" data-code="V3" data-days="60" data-mincap="10000" data-maxcap="3000000" data-rmin="0.0185" data-rmax="0.0285">
-            <h3>V3 · Growth</h3>
-            <div class="meta"><span class="chip">Term: 60 days</span><span class="chip">Limit: $10,000 – $3,000,000</span></div>
-            <div class="yield">Daily: 1.85% – 2.85%</div>
-            <p class="muted">Est. total over term: —</p>
-          </div>
-          <div class="card panel plan" data-code="V4" data-days="130" data-mincap="30000" data-maxcap="5000000" data-rmin="0.0195" data-rmax="0.0295">
-            <h3>V4 · Titan</h3>
-            <div class="meta"><span class="chip">Term: 130 days</span><span class="chip">Limit: $30,000 – $5,000,000</span></div>
-            <div class="yield">Daily: 1.95% – 2.95%</div>
-            <p class="muted">Est. total over term: —</p>
-          </div>
-        </div>
-        <p class="muted" style="font-size:12px; margin-top:10px">Daily ranges are indicative and for illustration only. Participation is non-custodial and subject to availability and risk controls.</p>
-      </div>
-    </section>
-
-    <!-- Mentorship -->
-    <section id="contact" class="tight">
-      <div class="container">
-        <div class="grid-3">
-          <div class="card panel" style="grid-column: span 2">
-            <h2 style="margin:0 0 8px">Talk to a Mentor — 1:1 guidance</h2>
-            <p class="muted">For people who want to use <strong>Web3 smart mining</strong> as a part-time opportunity. We cover strategy selection, wallet & security, deployment, and ongoing risk controls.</p>
-            <div class="grid-3" style="gap:12px; margin-top:8px">
-              <div class="card panel"><strong>What you get</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>Personalized strategy mix (staking / restaking / LP)</li><li>Position sizing & risk limits (caps, stop-loss, diversification)</li><li>Wallet & hardware-wallet safety checks</li><li>Gas-optimized routes & compounding cadence</li><li>Node/validator options and SLA templates</li></ul></div>
-              <div class="card panel"><strong>Process</strong><ol class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>WhatsApp intro (goals & constraints, 5–10 min)</li><li>Current-state review & risk profile (free)</li><li>30–60 day action plan</li><li>Weekly review & adjustments (optional)</li></ol></div>
-              <div class="card panel"><strong>Who it’s for</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>Busy professionals & students</li><li>Holders aiming to improve their effective APY</li><li>Newcomers exploring nodes/validators</li></ul><p class="muted" style="font-size:12px;margin-top:8px">No custody or “managed” accounts. Assets stay in your wallet.</p></div>
-            </div>
-            <div style="display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap">
-              <a class="cta" target="_blank" rel="noopener"
-                 href="https://wa.me/46766922734?text=Hello!%20I%E2%80%99d%20like%201:1%20mentorship%20for%20Web3%20smart%20mining.">
-                WhatsApp: chat now
-              </a>
-              <span class="muted" style="font-size:12px">We typically reply on business days.</span>
-            </div>
-          </div>
-          <div class="card panel">
-            <h3 style="margin:0 0 8px">Prefer email?</h3>
-            <p class="muted" style="margin:0 0 10px">Drop us a line and we’ll get back to you.</p>
-            <a class="ghost" href="mailto:hello@smartmine.app?subject=Inquiry">hello@smartmine.app</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="container">
-        <h2 style="margin:0 0 14px">Frequently asked questions</h2>
-        <details><summary>Is this custodial? Who controls the assets?</summary><p class="muted">We are non-custodial. You approve strategies from your own wallet, and you can withdraw or revoke at any time.</p></details>
-        <details><summary>What chains are supported?</summary><p class="muted">Major EVM chains at launch, with more based on demand. Exact list may vary during beta.</p></details>
-        <details><summary>What are the risks?</summary><p class="muted">Smart contracts, slashing, de-peg events, market volatility, and oracle failures. We use guardrails and monitoring, but risks remain.</p></details>
-        <details><summary>Do I need to run hardware?</summary><p class="muted">Not for most strategies. If you want to run a node/validator, we provide guides and templates.</p></details>
-        <details><summary>Fees?</summary><p class="muted">During beta we target no management fee and a performance-based fee on realized rewards. Fees may change and are disclosed clearly before confirmation.</p></details>
-        <details><summary>Is this available in my region?</summary><p class="muted">Availability depends on your local laws. You are responsible for complying with regulations in your jurisdiction.</p></details>
-      </div>
-    </section>
-  </main>
-
-  <footer id="terms">
-    <div class="container foot">
-      <div style="max-width:560px">
-        <strong>Disclaimer</strong>
-        <p class="muted" style="margin:.4rem 0 0; font-size:12px">Nothing on this page constitutes financial, legal, or tax advice. Digital assets are highly volatile and involve risk of loss. Past performance does not guarantee future results. Availability and features described here may change.</p>
-      </div>
-      <div style="display:grid; gap:6px; min-width:260px">
-        <a href="#privacy">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Status</a>
-        <span class="muted">© <span id="yr"></span> Web3 Intelligent Mine</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const BRAND_DATA_URI="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cg fill='white' font-family='Orbitron,Arial,Helvetica,sans-serif' text-anchor='middle'%3E%3Ctext x='128' y='160' font-size='112' font-weight='700'%3EW3%3C/text%3E%3C/g%3E%3C/svg%3E";
-    const $ = sel => document.querySelector(sel);
-
-    function setBrand(){
-      const r=document.documentElement.style;
-      r.setProperty('--accent','#20e3b2'); r.setProperty('--accent-2','#8b5cf6');
-    }
-
-    function inlineBrand(){
-      try{
-        document.querySelectorAll('img[data-brand]').forEach(img=> img.src = BRAND_DATA_URI);
-        ['link[rel="icon"]','link[rel="apple-touch-icon"]','link[rel="shortcut icon"]'].forEach(sel => {
-          const el = document.querySelector(sel); if(el) el.href = BRAND_DATA_URI;
-        });
-      }catch(e){}
-    }
-
-    function initBGFX(){
-      const c = document.getElementById('bgfx'); if(!c) return;
-      const ctx = c.getContext('2d'); let w,h,dpr=window.devicePixelRatio||1; let pts=[];
-      function resize(){ w=innerWidth; h=innerHeight; c.width=w*dpr; c.height=h*dpr; c.style.width=w+'px'; c.style.height=h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0);
-        pts = Array.from({length:64}, ()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*0.45,vy:(Math.random()-.5)*0.45}));
-      }
-      function step(){
-        ctx.clearRect(0,0,w,h);
-        for(const p of pts){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1; }
-        for(let i=0;i<pts.length;i++){
-          const p=pts[i];
-          for(let j=i+1;j<pts.length;j++){
-            const q=pts[j]; const dx=p.x-q.x, dy=p.y-q.y; const d=Math.hypot(dx,dy);
-            if(d<140){ const a=(1-d/140)*.6; ctx.strokeStyle=`rgba(34,211,238,${a})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
-          }
-          ctx.fillStyle='rgba(167,139,250,.7)'; ctx.beginPath(); ctx.arc(p.x,p.y,1.2,0,Math.PI*2); ctx.fill();
-        }
-        requestAnimationFrame(step);
-      }
-      resize(); step(); addEventListener('resize', resize);
-    }
-
-    function initTiltCards(){
-      document.querySelectorAll('.card').forEach(card=>{
-        card.addEventListener('mousemove', e=>{
-          const r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
-          card.style.transform=`perspective(800px) rotateX(${(0.5-y)*8}deg) rotateY(${(x-0.5)*8}deg)`;
-        });
-        card.addEventListener('mouseleave', ()=> { card.style.transform=''; });
-      });
-    }
-
-    function initPlans(){
-      const f = n => (n*100).toFixed(2)+'%';
-      document.querySelectorAll('.plan').forEach(el=>{
-        const d=+el.dataset.days, rmin=+el.dataset.rmin, rmax=+el.dataset.rmax;
-        const tmin = Math.pow(1+rmin, d)-1, tmax = Math.pow(1+rmax, d)-1;
-        const slot = el.querySelector('.muted'); if(slot) slot.textContent = `Est. total over term: ${f(tmin)} – ${f(tmax)}`;
-      });
-    }
-
-    function initTicker(){ const t=document.getElementById('ticker-track'); if(!t) return; t.innerHTML = t.innerHTML + t.innerHTML; }
-    function initCounters(){
-      const el = document.getElementById('stat-sim-users'); if(!el) return;
-      const target = Number(el.dataset.count||0);
-      const io = new IntersectionObserver(([e])=>{
-        if(!e.isIntersecting) return;
-        let cur=0, t0=performance.now(), dur=1300;
-        function step(t){ const k=Math.min(1,(t-t0)/dur); cur=Math.floor(target*(0.5-Math.cos(k*Math.PI)/2)); el.textContent=cur.toLocaleString()+'+'; if(k<1) requestAnimationFrame(step);}
-        requestAnimationFrame(step); io.disconnect();
-      },{threshold:.5}); io.observe(el);
-    }
-
-    function initIntro(){
-      const intro = document.getElementById('intro'); if(!intro) return;
-      document.documentElement.classList.add('no-scroll'); document.body.classList.add('no-scroll');
-      const lineEl = document.getElementById('intro-line'); const skipEl = document.getElementById('intro-skip');
-      const lines = [
-        "Run smarter. Earn better.",
-        "Non-custodial. Multi-chain. Risk-aware.",
-        "AI-driven allocations. Human control.",
-        "Your keys. Your rewards."
-      ];
-      let i = 0; const swap = () => { lineEl.textContent = lines[i % lines.length]; i++; };
-      swap(); const iv = setInterval(swap, 1200);
-      const close = () => {
-        clearInterval(iv);
-        intro.classList.add('hide');
-        document.documentElement.classList.remove('no-scroll'); document.body.classList.remove('no-scroll');
-        setTimeout(()=> intro.remove(), 480);
-      };
-      let tm = setTimeout(close, 4300);
-      skipEl.addEventListener('click', (e)=>{ e.preventDefault(); clearTimeout(tm); close(); });
-      skipEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); clearTimeout(tm); close(); }});
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('yr').textContent = new Date().getFullYear();
-      setBrand();
-      inlineBrand();
-      initBGFX();
-      initTiltCards();
-      initPlans();
-      initTicker();
-      initCounters();
-      initIntro();
-    });
-  </script>
-</body>
-</html>
