@@ -410,4 +410,208 @@
             <h2 style="margin:0 0 8px">Talk to a Mentor — 1:1 guidance</h2>
             <p class="muted">For people who want to use <strong>Web3 smart mining</strong> as a part-time opportunity. We cover strategy selection, wallet & security, deployment, and ongoing risk controls.</p>
             <div class="grid-3" style="gap:12px; margin-top:8px">
-              <div class="card panel"><strong>What you get</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>Personalized strategy mix (staking / restaking
+              <div class="card panel"><strong>What you get</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>Personalized strategy mix (staking / restaking / LP)</li><li>Position sizing & risk limits (caps, stop-loss, diversification)</li><li>Wallet & hardware-wallet safety checks</li><li>Gas-optimized routes & compounding cadence</li><li>Node/validator options and SLA templates</li></ul></div>
+              <div class="card panel"><strong>Process</strong><ol class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>WhatsApp intro (goals & constraints, 5–10 min)</li><li>Current-state review & risk profile (free)</li><li>30–60 day action plan</li><li>Weekly review & adjustments (optional)</li></ol></div>
+              <div class="card panel"><strong>Who it’s for</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>Busy professionals & students</li><li>Holders aiming to improve their effective APY</li><li>Newcomers exploring nodes/validators</li></ul><p class="muted" style="font-size:12px;margin-top:8px">No custody or “managed” accounts. Assets stay in your wallet.</p></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap">
+              <a class="cta" href="#" onclick="return openWhatsAppMentor()">WhatsApp: chat now</a>
+              <span class="muted" style="font-size:12px">We typically reply on business days.</span>
+            </div>
+          </div>
+          <div class="card panel">
+            <h3 style="margin:0 0 8px">Prefer email?</h3>
+            <p class="muted" style="margin:0 0 10px">Drop us a line and we’ll get back to you.</p>
+            <a class="ghost" href="mailto:hello@smartmine.app?subject=Inquiry">hello@smartmine.app</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 style="margin:0 0 14px">Frequently asked questions</h2>
+        <details><summary>Is this custodial? Who controls the assets?</summary><p class="muted">We are non-custodial. You approve strategies from your own wallet, and you can withdraw or revoke at any time.</p></details>
+        <details><summary>What chains are supported?</summary><p class="muted">Major EVM chains at launch, with more based on demand. Exact list may vary during beta.</p></details>
+        <details><summary>What are the risks?</summary><p class="muted">Smart contracts, slashing, de-peg events, market volatility, and oracle failures. We use guardrails and monitoring, but risks remain.</p></details>
+        <details><summary>Do I need to run hardware?</summary><p class="muted">Not for most strategies. If you want to run a node/validator, we provide guides and templates.</p></details>
+        <details><summary>Fees?</summary><p class="muted">During beta we target no management fee and a performance-based fee on realized rewards. Fees may change and are disclosed clearly before confirmation.</p></details>
+        <details><summary>Is this available in my region?</summary><p class="muted">Availability depends on your local laws. You are responsible for complying with regulations in your jurisdiction.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer id="terms">
+    <div class="container foot">
+      <div style="max-width:560px">
+        <strong>Disclaimer</strong>
+        <p class="muted" style="margin:.4rem 0 0; font-size:12px">Nothing on this page constitutes financial, legal, or tax advice. Digital assets are highly volatile and involve risk of loss. Past performance does not guarantee future results. Availability and features described here may change.</p>
+      </div>
+      <div style="display:grid; gap:6px; min-width:260px">
+        <a href="#privacy">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Status</a>
+        <span class="muted">© <span id="yr"></span> Web3 Intelligent Mine</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ===== CONFIG ===== */
+    const WA_NUMBER = "+46 76 692 27 34"; /* your WhatsApp number with country code */
+    const BRAND_DATA_URI = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cg fill='white' font-family='Orbitron,Arial,Helvetica,sans-serif' text-anchor='middle'%3E%3Ctext x='128' y='160' font-size='112' font-weight='700'%3EW3%3C/text%3E%3C/g%3E%3C/svg%3E";
+
+    const $ = sel => document.querySelector(sel);
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    function setBrand(mode){
+      const r = document.documentElement.style;
+      document.querySelectorAll('.brandbtn').forEach(b=>b.classList.remove('active'));
+      if(mode==='crypto'){ /* kept for compatibility */
+        r.setProperty('--accent','#00a2ff');
+        r.setProperty('--accent-2','#0b3a7a');
+      }else if(mode==='onchain'){
+        r.setProperty('--accent','#20e3b2');
+        r.setProperty('--accent-2','#8b5cf6');
+        const b = $('#btn-onchain'); if(b) b.classList.add('active');
+      }else{
+        r.setProperty('--accent','#20e3b2');   /* default already onchain */
+        r.setProperty('--accent-2','#8b5cf6');
+      }
+    }
+
+    /* ===== WhatsApp helpers ===== */
+    function openWhatsAppPlan(code){
+      const el = document.querySelector('.plan[data-code="'+code+'"]'); if(!el) return false;
+      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
+      const {days,mincap,maxcap,rmin,rmax} = el.dataset;
+      const msg = `Hi! I'm interested in Liquidity Mining ${code}.
+Term: ${days} days
+Limits: $${Number(mincap).toLocaleString()} – $${Number(maxcap).toLocaleString()}
+Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(2)}%`;
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
+      return false;
+    }
+    function openWhatsAppMentor(){
+      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
+      const text = encodeURIComponent('Hello! I’d like 1:1 mentorship for Web3 smart mining.');
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank'); return false;
+    }
+    function openWhatsAppGift(){
+      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
+      const text = encodeURIComponent('Hi! Please send the Welcome Kit: onboarding steps, tutorials, community guide, and upcoming roles.');
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank'); return false;
+    }
+    function inlineBrand(){
+      try{
+        document.querySelectorAll('img[data-brand]').forEach(img=> img.src = BRAND_DATA_URI);
+        ['link[rel="icon"]','link[rel="apple-touch-icon"]','link[rel="shortcut icon"]'].forEach(sel => {
+          const el = document.querySelector(sel); if(el) el.href = BRAND_DATA_URI;
+        });
+      }catch(e){}
+    }
+
+    /* ===== Background mesh ===== */
+    function initBGFX(){
+      const c = document.getElementById('bgfx'); if(!c) return;
+      const ctx = c.getContext('2d'); let w,h,dpr=window.devicePixelRatio||1; let pts=[];
+      function resize(){ w=innerWidth; h=innerHeight; c.width=w*dpr; c.height=h*dpr; c.style.width=w+'px'; c.style.height=h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0);
+        pts = Array.from({length:64}, ()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*0.45,vy:(Math.random()-.5)*0.45}));
+      }
+      function step(){
+        ctx.clearRect(0,0,w,h);
+        for(const p of pts){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1; }
+        for(let i=0;i<pts.length;i++){
+          const p=pts[i];
+          for(let j=i+1;j<pts.length;j++){
+            const q=pts[j]; const dx=p.x-q.x, dy=p.y-q.y; const d=Math.hypot(dx,dy);
+            if(d<140){ const a=(1-d/140)*.6; ctx.strokeStyle=`rgba(34,211,238,${a})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+          }
+          ctx.fillStyle='rgba(167,139,250,.7)'; ctx.beginPath(); ctx.arc(p.x,p.y,1.2,0,Math.PI*2); ctx.fill();
+        }
+        requestAnimationFrame(step);
+      }
+      resize(); step(); addEventListener('resize', resize);
+    }
+
+    /* ===== Card tilt ===== */
+    function initTiltCards(){
+      document.querySelectorAll('.card').forEach(card=>{
+        card.addEventListener('mousemove', e=>{
+          const r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+          card.style.transform=`perspective(800px) rotateX(${(0.5-y)*8}deg) rotateY(${(x-0.5)*8}deg)`;
+        });
+        card.addEventListener('mouseleave', ()=> card.style.transform='';
+      });
+    }
+
+    /* ===== Plan totals ===== */
+    function initPlans(){
+      const f = n => (n*100).toFixed(2)+'%';
+      document.querySelectorAll('.plan').forEach(el=>{
+        const d=+el.dataset.days, rmin=+el.dataset.rmin, rmax=+el.dataset.rmax;
+        const tmin = Math.pow(1+rmin, d)-1, tmax = Math.pow(1+rmax, d)-1;
+        const slot = el.querySelector('.muted'); if(slot) slot.textContent = `Est. total over term: ${f(tmin)} – ${f(tmax)}`;
+      });
+    }
+
+    /* ===== Ticker & counters ===== */
+    function initTicker(){ const t=document.getElementById('ticker-track'); if(!t) return; t.innerHTML = t.innerHTML + t.innerHTML; }
+    function initCounters(){
+      const el = document.getElementById('stat-sim-users'); if(!el) return;
+      const target = Number(el.dataset.count||0);
+      const io = new IntersectionObserver(([e])=>{
+        if(!e.isIntersecting) return;
+        let cur=0, t0=performance.now(), dur=1300;
+        function step(t){ const k=Math.min(1,(t-t0)/dur); cur=Math.floor(target*(0.5-Math.cos(k*Math.PI)/2)); el.textContent=cur.toLocaleString()+'+'; if(k<1) requestAnimationFrame(step);}
+        requestAnimationFrame(step); io.disconnect();
+      },{threshold:.5}); io.observe(el);
+    }
+
+    /* ===== Intro / Splash ===== */
+    function initIntro(){
+      const intro = document.getElementById('intro');
+      if(!intro) return;
+
+      document.documentElement.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
+
+      const lineEl = document.getElementById('intro-line');
+      const skipEl = document.getElementById('intro-skip');
+
+      const lines = [
+        "Run smarter. Earn better.",
+        "Non-custodial. Multi-chain. Risk-aware.",
+        "AI-driven allocations. Human control.",
+        "Your keys. Your rewards."
+      ];
+      let i = 0;
+      const swap = () => { lineEl.textContent = lines[i % lines.length]; i++; };
+      swap();
+      const iv = setInterval(swap, 1200);
+
+      const close = () => {
+        clearInterval(iv);
+        intro.classList.add('hide');
+        document.documentElement.classList.remove('no-scroll');
+        document.body.classList.remove('no-scroll');
+
+        const target = document.getElementById('welcome');
+        if (target) {
+          const y = target.getBoundingClientRect().top + window.pageYOffset - 8;
+          window.scrollTo({ top: y, behavior: 'auto' });
+        }
+        setTimeout(()=> intro.remove(), 480);
+      };
+
+      let tm = setTimeout(close, 4300);
+      skipEl.addEventListener('click', (e)=>{ e.preventDefault(); clearTimeout(tm); close(); });
+      skipEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); clearTimeout(tm); close(); }});
+    }
+
+    /* ===== Boot ===== */
+    inlineBrand(); initBGFX(); initTiltCards(); initPlans(); initTicker(); initCounters(); initIntro();
+  </script>
+</body>
+</html>
