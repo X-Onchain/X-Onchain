@@ -26,7 +26,6 @@
   <style>
     :root{
       --bg:#030712; --card:#0b1329; --border:#17234a; --text:#eaf2ff; --muted:#9bb3d9;
-      /* Onchain style as default */
       --accent:#20e3b2; --accent-2:#8b5cf6; --ok:#34d399;
       --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
     }
@@ -63,8 +62,7 @@
       background:linear-gradient(135deg, rgba(34,211,238,.5), rgba(167,139,250,.35));
       -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;mask-composite:exclude;
-      /* critical: let clicks pass through so inner <a> works */
-      pointer-events:none;
+      pointer-events:none; /* 不再挡住内部按钮点击 */
     }
     .panel{padding:22px}
 
@@ -141,7 +139,7 @@
     /* Canvas as background */
     #bgfx{ position:fixed; inset:0; z-index:-1; display:block; pointer-events:none; }
 
-    /* Intro / Splash */
+    /* ===== Intro / Splash ===== */
     html.no-scroll, body.no-scroll { overflow: hidden; }
     #intro{
       position:fixed; inset:0; z-index:2000; display:grid; place-items:center;
@@ -149,6 +147,13 @@
                   radial-gradient(900px 520px at 100% 30%, rgba(167,139,250,.10), transparent 60%),
                   rgba(3,7,18,.85);
       backdrop-filter: blur(4px) saturate(130%); transition: opacity .45s ease;
+    }
+    /* 纯 CSS 自动隐藏：即使 JS 崩了也会 4.6s 后不挡点击 */
+    #intro.auto-hide{ animation: introAutoHide 4.6s forwards; }
+    @keyframes introAutoHide {
+      0% { opacity:1 }
+      90% { opacity:0 }
+      100% { opacity:0; visibility:hidden; pointer-events:none }
     }
     #intro.hide{ opacity:0; pointer-events:none; display:none; }
     .intro-wrap{ text-align:center; padding: 28px; max-width: 960px; }
@@ -169,7 +174,7 @@
   <canvas id="bgfx" aria-hidden="true"></canvas>
 
   <!-- Splash Intro -->
-  <div id="intro" aria-live="polite">
+  <div id="intro" class="auto-hide" aria-live="polite">
     <div class="intro-wrap">
       <div class="intro-eyebrow">WEB3 INTELLIGENT MINE</div>
       <h1 class="intro-title"><span id="intro-line">Run smarter. Earn better.</span></h1>
@@ -194,8 +199,7 @@
         <a href="#strategies">Strategies</a>
         <a href="#faq">FAQ</a>
         <a class="ghost" href="#contact">Contact</a>
-        <!-- Theme switcher removed -->
-        <!-- Top-right CTA: direct WA link -->
+        <!-- 顶部 CTA：直链 WhatsApp -->
         <a class="cta" target="_blank" rel="noopener noreferrer"
            href="https://wa.me/46766922734?text=Hi!%20Please%20send%20the%20Welcome%20Kit:%20onboarding%20steps,%20tutorials,%20community%20guide,%20and%20upcoming%20roles.">
           Send Message
@@ -236,7 +240,6 @@
               </ul>
               <p class="muted" style="margin:0 0 .5rem">Free to join, simple signup—start your journey today.</p>
               <div class="actions">
-                <!-- HERO CTA: direct WA link -->
                 <a class="cta" target="_blank" rel="noopener noreferrer"
                    href="https://wa.me/46766922734?text=Hi!%20Please%20send%20the%20Welcome%20Kit:%20onboarding%20steps,%20tutorials,%20community%20guide,%20and%20upcoming%20roles.">
                   Send Message • Get Welcome Kit
@@ -398,7 +401,6 @@
               <div class="card panel"><strong>Who it’s for</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>Busy professionals & students</li><li>Holders aiming to improve their effective APY</li><li>Newcomers exploring nodes/validators</li></ul><p class="muted" style="font-size:12px;margin-top:8px">No custody or “managed” accounts. Assets stay in your wallet.</p></div>
             </div>
             <div style="display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap">
-              <!-- MENTOR CTA: direct WA link -->
               <a class="cta" target="_blank" rel="noopener noreferrer"
                  href="https://wa.me/46766922734?text=Hello!%20I%E2%80%99d%20like%201:1%20mentorship%20for%20Web3%20smart%20mining.">
                 WhatsApp: chat now
@@ -446,7 +448,6 @@
 
   <script>
     const BRAND_DATA_URI="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cg fill='white' font-family='Orbitron,Arial,Helvetica,sans-serif' text-anchor='middle'%3E%3Ctext x='128' y='160' font-size='112' font-weight='700'%3EW3%3C/text%3E%3C/g%3E%3C/svg%3E";
-    const $ = sel => document.querySelector(sel);
 
     function inlineBrand(){
       try{
@@ -457,6 +458,7 @@
       }catch(e){}
     }
 
+    /* Background mesh */
     function initBGFX(){
       const c = document.getElementById('bgfx'); if(!c) return;
       const ctx = c.getContext('2d'); let w,h,dpr=window.devicePixelRatio||1; let pts=[];
@@ -510,27 +512,41 @@
       },{threshold:.5}); io.observe(el);
     }
 
+    /* Robust Intro close */
+    function closeIntro(){
+      const intro = document.getElementById('intro'); if(!intro) return;
+      intro.classList.add('hide');
+      document.documentElement.classList.remove('no-scroll'); document.body.classList.remove('no-scroll');
+      setTimeout(()=> { try{ intro.remove(); }catch(e){} }, 480);
+    }
+
     function initIntro(){
       const intro = document.getElementById('intro'); if(!intro) return;
       document.documentElement.classList.add('no-scroll'); document.body.classList.add('no-scroll');
-      const lineEl = document.getElementById('intro-line'); const skipEl = document.getElementById('intro-skip');
+
+      const lineEl = document.getElementById('intro-line');
       const lines = [
         "Run smarter. Earn better.",
         "Non-custodial. Multi-chain. Risk-aware.",
         "AI-driven allocations. Human control.",
         "Your keys. Your rewards."
       ];
-      let i = 0; const swap = () => { lineEl.textContent = lines[i % lines.length]; i++; };
+      let i = 0; const swap = () => { if(lineEl){ lineEl.textContent = lines[i % lines.length]; i++; } };
       swap(); const iv = setInterval(swap, 1200);
-      const close = () => {
-        clearInterval(iv);
-        intro.classList.add('hide');
-        document.documentElement.classList.remove('no-scroll'); document.body.classList.remove('no-scroll');
-        setTimeout(()=> intro.remove(), 480);
-      };
-      let tm = setTimeout(close, 4300);
-      skipEl.addEventListener('click', (e)=>{ e.preventDefault(); clearTimeout(tm); close(); });
-      skipEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); clearTimeout(tm); close(); }});
+
+      const skip = () => { clearInterval(iv); closeIntro(); };
+      const skipEl = document.getElementById('intro-skip');
+      if(skipEl){
+        skipEl.addEventListener('click', e => { e.preventDefault(); skip(); });
+        skipEl.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); skip(); } });
+      }
+      // 点击背景也可跳过
+      intro.addEventListener('click', e => { if(e.target === intro) skip(); });
+      // Esc 关闭
+      document.addEventListener('keydown', e => { if(e.key === 'Escape') skip(); });
+
+      // JS 兜底：最长 5.2s 一定关闭
+      setTimeout(skip, 5200);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
