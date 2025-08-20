@@ -8,7 +8,7 @@
   <title>Web3 Intelligent Mine — Smart Mining for Part-Time Earners</title>
 
   <meta name="description" content="Non-custodial, AI-assisted strategies across staking, restaking, and liquidity mining. Built for part-time contributors who want transparent, risk-aware rewards." />
-  <meta name="keywords" content="web3, smart mining, staking, restaking, liquidity mining, DeFi, side hustle, passive income, validator, crypto.com, onchain wallet" />
+  <meta name="keywords" content="web3, smart mining, staking, restaking, liquidity mining, DeFi, side hustle, passive income, validator, onchain wallet" />
   <meta property="og:title" content="Web3 Intelligent Mine — Smart Mining for Part-Time Earners" />
   <meta property="og:description" content="Run smarter. Earn better. Non-custodial, multi-chain, and risk-aware." />
   <meta property="og:type" content="website" />
@@ -30,11 +30,9 @@
       --border: #17234a;
       --text: #eaf2ff;
       --muted: #9bb3d9;
-
-      /* Onchain-style is the default now */
-      --accent: #20e3b2;     /* teal */
-      --accent-2: #8b5cf6;   /* violet */
-
+      /* Onchain-style default */
+      --accent: #20e3b2;
+      --accent-2: #8b5cf6;
       --ok: #34d399;
       --radius: 18px;
       --shadow: 0 10px 30px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
@@ -61,7 +59,7 @@
     .cta{padding:.7rem 1rem;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; box-shadow:var(--shadow)}
     .ghost{padding:.6rem .9rem;border:1px solid var(--border);border-radius:12px;background:transparent;color:var(--text)}
 
-    /* Theme button (only Onchain shown now) */
+    /* Theme button (only Onchain shown) */
     .brand-switch{display:flex; gap:8px; align-items:center}
     .brandbtn{font:700 12px/1 'Inter',sans-serif; letter-spacing:.04em; padding:6px 8px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:#b9c8e6}
     .brandbtn.active{border-color:var(--accent); color:var(--text)}
@@ -123,9 +121,6 @@
     .ecosys{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
     .e-logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid var(--border)}
     .badge{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid var(--border); color:#9bb3d9}
-    .risk-low{background:rgba(52,211,153,.1); color:#77f0c2; border-color:rgba(52,211,153,.3)}
-    .risk-med{background:rgba(245,158,11,.1); color:#ffd182; border-color:rgba(245,158,11,.3)}
-    .risk-high{background:rgba(244,63,94,.12); color:#ff97aa; border-color:rgba(244,63,94,.35)}
 
     footer{padding:40px 0; border-top:1px solid var(--border); color:#a7b6d6}
     .foot{display:flex; gap:16px; justify-content:space-between; flex-wrap:wrap}
@@ -212,7 +207,7 @@
         <a href="#faq">FAQ</a>
         <a class="ghost" href="#contact">Contact</a>
 
-        <!-- ONLY Onchain-style button kept -->
+        <!-- Only Onchain-style button kept -->
         <div class="brand-switch" aria-label="Theme">
           <button class="brandbtn active" id="btn-onchain" onclick="setBrand('onchain')">Onchain-style</button>
         </div>
@@ -293,12 +288,11 @@
       </div>
     </section>
 
-    <!-- Ecosystem (brand-inspired, not official logos) -->
+    <!-- Ecosystem -->
     <section id="ecosys" class="tight">
       <div class="container">
         <h2 style="margin:0 0 16px">Ecosystem compatibility</h2>
         <div class="ecosys">
-          <!-- Onchain-inspired -->
           <div class="card panel">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
               <div class="e-logo">
@@ -318,7 +312,6 @@
             </ul>
           </div>
 
-          <!-- Crypto.com-inspired -->
           <div class="card panel">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
               <div class="e-logo">
@@ -338,7 +331,7 @@
             </ul>
           </div>
         </div>
-        <!-- Disclaimer line removed as requested -->
+        <!-- The previous disclaimer line was removed as requested -->
       </div>
     </section>
 
@@ -459,40 +452,22 @@
 
   <script>
     /* ===== CONFIG ===== */
-    const WA_NUMBER = "+46 76 692 27 34"; /* your WhatsApp number with country code */
+    const WA_NUMBER = "+46 76 692 27 34"; /* WhatsApp number with country code */
     const BRAND_DATA_URI = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cg fill='white' font-family='Orbitron,Arial,Helvetica,sans-serif' text-anchor='middle'%3E%3Ctext x='128' y='160' font-size='112' font-weight='700'%3EW3%3C/text%3E%3C/g%3E%3C/svg%3E";
 
     const $ = sel => document.querySelector(sel);
-    document.getElementById('yr').textContent = new Date().getFullYear();
 
     function setBrand(mode){
       const r = document.documentElement.style;
       document.querySelectorAll('.brandbtn').forEach(b=>b.classList.remove('active'));
-      if(mode==='crypto'){ /* kept for compatibility */
-        r.setProperty('--accent','#00a2ff');
-        r.setProperty('--accent-2','#0b3a7a');
-      }else if(mode==='onchain'){
+      if(mode==='onchain'){
         r.setProperty('--accent','#20e3b2');
         r.setProperty('--accent-2','#8b5cf6');
         const b = $('#btn-onchain'); if(b) b.classList.add('active');
-      }else{
-        r.setProperty('--accent','#20e3b2');   /* default already onchain */
-        r.setProperty('--accent-2','#8b5cf6');
       }
     }
 
     /* ===== WhatsApp helpers ===== */
-    function openWhatsAppPlan(code){
-      const el = document.querySelector('.plan[data-code="'+code+'"]'); if(!el) return false;
-      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
-      const {days,mincap,maxcap,rmin,rmax} = el.dataset;
-      const msg = `Hi! I'm interested in Liquidity Mining ${code}.
-Term: ${days} days
-Limits: $${Number(mincap).toLocaleString()} – $${Number(maxcap).toLocaleString()}
-Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(2)}%`;
-      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
-      return false;
-    }
     function openWhatsAppMentor(){
       const phone = WA_NUMBER.replace(/[^0-9]/g,'');
       const text = encodeURIComponent('Hello! I’d like 1:1 mentorship for Web3 smart mining.');
@@ -503,6 +478,7 @@ Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(
       const text = encodeURIComponent('Hi! Please send the Welcome Kit: onboarding steps, tutorials, community guide, and upcoming roles.');
       window.open(`https://wa.me/${phone}?text=${text}`, '_blank'); return false;
     }
+
     function inlineBrand(){
       try{
         document.querySelectorAll('img[data-brand]').forEach(img=> img.src = BRAND_DATA_URI);
@@ -535,14 +511,14 @@ Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(
       resize(); step(); addEventListener('resize', resize);
     }
 
-    /* ===== Card tilt ===== */
+    /* ===== Card tilt (fixed missing bracket) ===== */
     function initTiltCards(){
       document.querySelectorAll('.card').forEach(card=>{
         card.addEventListener('mousemove', e=>{
           const r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
           card.style.transform=`perspective(800px) rotateX(${(0.5-y)*8}deg) rotateY(${(x-0.5)*8}deg)`;
         });
-        card.addEventListener('mouseleave', ()=> card.style.transform='';
+        card.addEventListener('mouseleave', ()=> { card.style.transform=''; });
       });
     }
 
@@ -596,22 +572,27 @@ Daily range: ${(Number(rmin)*100).toFixed(2)}% – ${(Number(rmax)*100).toFixed(
         intro.classList.add('hide');
         document.documentElement.classList.remove('no-scroll');
         document.body.classList.remove('no-scroll');
-
-        const target = document.getElementById('welcome');
-        if (target) {
-          const y = target.getBoundingClientRect().top + window.pageYOffset - 8;
-          window.scrollTo({ top: y, behavior: 'auto' });
-        }
         setTimeout(()=> intro.remove(), 480);
       };
 
+      // auto close + accessible skip
       let tm = setTimeout(close, 4300);
       skipEl.addEventListener('click', (e)=>{ e.preventDefault(); clearTimeout(tm); close(); });
       skipEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); clearTimeout(tm); close(); }});
     }
 
-    /* ===== Boot ===== */
-    inlineBrand(); initBGFX(); initTiltCards(); initPlans(); initTicker(); initCounters(); initIntro();
+    // ===== Boot on DOM ready =====
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('yr').textContent = new Date().getFullYear();
+      setBrand('onchain');
+      inlineBrand();
+      initBGFX();
+      initTiltCards();
+      initPlans();
+      initTicker();
+      initCounters();
+      initIntro();
+    });
   </script>
 </body>
 </html>
