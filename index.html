@@ -59,11 +59,6 @@
     .cta{padding:.7rem 1rem;border:1px solid transparent;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#00121e; font-weight:900; box-shadow:var(--shadow)}
     .ghost{padding:.6rem .9rem;border:1px solid var(--border);border-radius:12px;background:transparent;color:var(--text)}
 
-    /* Theme button (only Onchain shown) */
-    .brand-switch{display:flex; gap:8px; align-items:center}
-    .brandbtn{font:700 12px/1 'Inter',sans-serif; letter-spacing:.04em; padding:6px 8px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:#b9c8e6}
-    .brandbtn.active{border-color:var(--accent); color:var(--text)}
-
     section{padding:54px 0}
     .tight{padding:38px 0} .dense{padding:26px 0}
 
@@ -93,9 +88,7 @@
     .orb{width:clamp(260px,28vw,460px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:
       radial-gradient(closest-side, rgba(34,211,238,.35), rgba(34,211,238,0) 60%),
       conic-gradient(from 0deg, rgba(167,139,250,.25), rgba(34,211,238,.25), rgba(129,140,248,.25), rgba(167,139,250,.25));
-      filter: drop-shadow(0 0 24px rgba(34,211,238,.25)) drop-shadow(0 0 56px rgba(167,139,250,.2));
-      animation: spin 28s linear infinite;
-    }
+    filter: drop-shadow(0 0 24px rgba(34,211,238,.25)) drop-shadow(0 0 56px rgba(167,139,250,.2)); animation: spin 28s linear infinite}
     .orb .orb-logo{width:58%; height:auto; border-radius:22px; opacity:.95; mix-blend-mode:screen; filter: brightness(1.18) contrast(1.1) saturate(1.25) hue-rotate(185deg); box-shadow:0 0 48px rgba(34,211,238,.25),0 0 96px rgba(167,139,250,.18)}
     @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -206,13 +199,11 @@
         <a href="#strategies">Strategies</a>
         <a href="#faq">FAQ</a>
         <a class="ghost" href="#contact">Contact</a>
-
-        <!-- Only Onchain-style button kept -->
-        <div class="brand-switch" aria-label="Theme">
-          <button class="brandbtn active" id="btn-onchain" onclick="setBrand('onchain')">Onchain-style</button>
-        </div>
-
-        <a class="cta" href="#" onclick="return openWhatsAppGift()">Send Message</a>
+        <!-- Theme switcher removed as requested -->
+        <a class="cta" target="_blank" rel="noopener" 
+           href="https://wa.me/46766922734?text=Hi!%20Please%20send%20the%20Welcome%20Kit:%20onboarding%20steps,%20tutorials,%20community%20guide,%20and%20upcoming%20roles.">
+           Send Message
+        </a>
       </nav>
     </div>
   </header>
@@ -249,7 +240,10 @@
               </ul>
               <p class="muted" style="margin:0 0 .5rem">Free to join, simple signup—start your journey today.</p>
               <div class="actions">
-                <a class="cta" href="#" onclick="return openWhatsAppGift()">Send Message • Get Welcome Kit</a>
+                <a class="cta" target="_blank" rel="noopener"
+                   href="https://wa.me/46766922734?text=Hi!%20Please%20send%20the%20Welcome%20Kit:%20onboarding%20steps,%20tutorials,%20community%20guide,%20and%20upcoming%20roles.">
+                  Send Message • Get Welcome Kit
+                </a>
                 <a class="ghost" href="#liquidity">View Plans</a>
               </div>
             </div>
@@ -331,7 +325,6 @@
             </ul>
           </div>
         </div>
-        <!-- The previous disclaimer line was removed as requested -->
       </div>
     </section>
 
@@ -408,7 +401,10 @@
               <div class="card panel"><strong>Who it’s for</strong><ul class="muted" style="padding-left:18px;margin:.5rem 0 0"><li>Busy professionals & students</li><li>Holders aiming to improve their effective APY</li><li>Newcomers exploring nodes/validators</li></ul><p class="muted" style="font-size:12px;margin-top:8px">No custody or “managed” accounts. Assets stay in your wallet.</p></div>
             </div>
             <div style="display:flex; gap:10px; align-items:center; margin-top:12px; flex-wrap:wrap">
-              <a class="cta" href="#" onclick="return openWhatsAppMentor()">WhatsApp: chat now</a>
+              <a class="cta" target="_blank" rel="noopener"
+                 href="https://wa.me/46766922734?text=Hello!%20I%E2%80%99d%20like%201:1%20mentorship%20for%20Web3%20smart%20mining.">
+                WhatsApp: chat now
+              </a>
               <span class="muted" style="font-size:12px">We typically reply on business days.</span>
             </div>
           </div>
@@ -451,32 +447,12 @@
   </footer>
 
   <script>
-    /* ===== CONFIG ===== */
-    const WA_NUMBER = "+46 76 692 27 34"; /* WhatsApp number with country code */
-    const BRAND_DATA_URI = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cg fill='white' font-family='Orbitron,Arial,Helvetica,sans-serif' text-anchor='middle'%3E%3Ctext x='128' y='160' font-size='112' font-weight='700'%3EW3%3C/text%3E%3C/g%3E%3C/svg%3E";
-
+    const BRAND_DATA_URI="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='56' fill='%230ea5e9'/%3E%3Cg fill='white' font-family='Orbitron,Arial,Helvetica,sans-serif' text-anchor='middle'%3E%3Ctext x='128' y='160' font-size='112' font-weight='700'%3EW3%3C/text%3E%3C/g%3E%3C/svg%3E";
     const $ = sel => document.querySelector(sel);
 
-    function setBrand(mode){
-      const r = document.documentElement.style;
-      document.querySelectorAll('.brandbtn').forEach(b=>b.classList.remove('active'));
-      if(mode==='onchain'){
-        r.setProperty('--accent','#20e3b2');
-        r.setProperty('--accent-2','#8b5cf6');
-        const b = $('#btn-onchain'); if(b) b.classList.add('active');
-      }
-    }
-
-    /* ===== WhatsApp helpers ===== */
-    function openWhatsAppMentor(){
-      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
-      const text = encodeURIComponent('Hello! I’d like 1:1 mentorship for Web3 smart mining.');
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank'); return false;
-    }
-    function openWhatsAppGift(){
-      const phone = WA_NUMBER.replace(/[^0-9]/g,'');
-      const text = encodeURIComponent('Hi! Please send the Welcome Kit: onboarding steps, tutorials, community guide, and upcoming roles.');
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank'); return false;
+    function setBrand(){
+      const r=document.documentElement.style;
+      r.setProperty('--accent','#20e3b2'); r.setProperty('--accent-2','#8b5cf6');
     }
 
     function inlineBrand(){
@@ -488,7 +464,6 @@
       }catch(e){}
     }
 
-    /* ===== Background mesh ===== */
     function initBGFX(){
       const c = document.getElementById('bgfx'); if(!c) return;
       const ctx = c.getContext('2d'); let w,h,dpr=window.devicePixelRatio||1; let pts=[];
@@ -511,7 +486,6 @@
       resize(); step(); addEventListener('resize', resize);
     }
 
-    /* ===== Card tilt (fixed missing bracket) ===== */
     function initTiltCards(){
       document.querySelectorAll('.card').forEach(card=>{
         card.addEventListener('mousemove', e=>{
@@ -522,7 +496,6 @@
       });
     }
 
-    /* ===== Plan totals ===== */
     function initPlans(){
       const f = n => (n*100).toFixed(2)+'%';
       document.querySelectorAll('.plan').forEach(el=>{
@@ -532,7 +505,6 @@
       });
     }
 
-    /* ===== Ticker & counters ===== */
     function initTicker(){ const t=document.getElementById('ticker-track'); if(!t) return; t.innerHTML = t.innerHTML + t.innerHTML; }
     function initCounters(){
       const el = document.getElementById('stat-sim-users'); if(!el) return;
@@ -545,46 +517,32 @@
       },{threshold:.5}); io.observe(el);
     }
 
-    /* ===== Intro / Splash ===== */
     function initIntro(){
-      const intro = document.getElementById('intro');
-      if(!intro) return;
-
-      document.documentElement.classList.add('no-scroll');
-      document.body.classList.add('no-scroll');
-
-      const lineEl = document.getElementById('intro-line');
-      const skipEl = document.getElementById('intro-skip');
-
+      const intro = document.getElementById('intro'); if(!intro) return;
+      document.documentElement.classList.add('no-scroll'); document.body.classList.add('no-scroll');
+      const lineEl = document.getElementById('intro-line'); const skipEl = document.getElementById('intro-skip');
       const lines = [
         "Run smarter. Earn better.",
         "Non-custodial. Multi-chain. Risk-aware.",
         "AI-driven allocations. Human control.",
         "Your keys. Your rewards."
       ];
-      let i = 0;
-      const swap = () => { lineEl.textContent = lines[i % lines.length]; i++; };
-      swap();
-      const iv = setInterval(swap, 1200);
-
+      let i = 0; const swap = () => { lineEl.textContent = lines[i % lines.length]; i++; };
+      swap(); const iv = setInterval(swap, 1200);
       const close = () => {
         clearInterval(iv);
         intro.classList.add('hide');
-        document.documentElement.classList.remove('no-scroll');
-        document.body.classList.remove('no-scroll');
+        document.documentElement.classList.remove('no-scroll'); document.body.classList.remove('no-scroll');
         setTimeout(()=> intro.remove(), 480);
       };
-
-      // auto close + accessible skip
       let tm = setTimeout(close, 4300);
       skipEl.addEventListener('click', (e)=>{ e.preventDefault(); clearTimeout(tm); close(); });
       skipEl.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); clearTimeout(tm); close(); }});
     }
 
-    // ===== Boot on DOM ready =====
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('yr').textContent = new Date().getFullYear();
-      setBrand('onchain');
+      setBrand();
       inlineBrand();
       initBGFX();
       initTiltCards();
